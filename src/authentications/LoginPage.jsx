@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "./AuthContext.jsx";
+import { usePath } from "../assets/PathContext.jsx";
 
 const LoginPage = () => {
+  const { destination } = usePath();
   const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
@@ -13,10 +15,11 @@ const LoginPage = () => {
 
     try {
       await login({ userName, password });
-      navigate(-1);
+      if (!destination) navigate("home");
+      navigate(destination);
     } catch(err) {
       setError(err);
-      console.log(error)
+      console.log(err)
     }
   };
 

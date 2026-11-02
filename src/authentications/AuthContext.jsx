@@ -18,7 +18,16 @@ export const AuthProvider = ({ children }) => {
     };
     setToken(result);
     localStorage.setItem("token", token);
+    console.log(`login result:`, result);
   };
+
+  const register = async (credentials) => {};
+
+  const logout = () => {
+    setToken(null);
+    localStorage.removeItem("token");
+  }
+
 
   const value = {
     token,
