@@ -84,6 +84,11 @@ const HomePage = () => {
     if (isExisting) {
       setDestination("/appointments/" + id);
       navigate("/appointments/" + id);
+    };
+
+    if (!isExisting && token) {
+      setDestination("/appointments/" + id);
+      navigate("/appointments/" + id);
     } else {
       setDestination("/appointments/" + id);
       navigate("/login")

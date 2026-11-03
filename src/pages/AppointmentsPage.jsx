@@ -6,7 +6,7 @@ const AppointmentsPage = () => {
   const { location, setLocation, destination } = usePath();
   const newLocation = destination;
   console.log(`newLocation:`, newLocation);
-  setLocation(newLocation);
+  // setLocation(newLocation);
   console.log(`location:`, location);
   console.log(`Appointments Page. id:`, id);
 

@@ -21,7 +21,21 @@ export const AuthProvider = ({ children }) => {
     console.log(`login result:`, result);
   };
 
-  const register = async (credentials) => {};
+  const register = async (credentials) => {
+    console.log(`credentials:`, credentials);
+    const response = await fetch(BASE_URL + "/clients/register",{
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials)
+    });
+    console.log(`response:`, response);
+    const result = await response.text();
+    if (!response.ok) {
+      throw new Error(`Status: ${response.status}: ${response.statusText}!! ${result}`);
+    };
+    setToken(result);
+    console.log(`result:`, result);
+  };
 
   const logout = () => {
     setToken(null);
@@ -31,9 +45,9 @@ export const AuthProvider = ({ children }) => {
 
   const value = {
     token,
-    login
-    // register,
-    // logout
+    login,
+    register,
+    logout
   };
 
   return (

@@ -15,7 +15,8 @@ const LoginPage = () => {
 
     try {
       await login({ userName, password });
-      if (!destination) navigate("home");
+      console.log(`destination:`, destination);
+      if (!destination) navigate("/home");
       navigate(destination);
     } catch(err) {
       setError(err);
@@ -46,6 +47,12 @@ const LoginPage = () => {
           Login
         </button>
       </form>
+      <nav>
+        <p>If you do not have an account, Please select the link to create one.</p>
+        <Link to={"/register"}>
+          <h4>Register</h4>
+        </Link>
+      </nav>
     </div>
   )
 };
