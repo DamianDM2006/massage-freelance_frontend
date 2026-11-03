@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, Navigate, useNavigate } from "react-router";
 import { useAuth } from "./AuthContext.jsx";
 import { usePath } from "../assets/PathContext.jsx";
 
 const LoginPage = () => {
   const { destination } = usePath();
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
@@ -15,14 +15,21 @@ const LoginPage = () => {
 
     try {
       await login({ userName, password });
-      console.log(`destination:`, destination);
-      if (!destination) navigate("/home");
-      navigate(destination);
     } catch(err) {
       setError(err);
       console.log(err)
-    }
-  };
+    };
+  };  
+
+  const MovingOn = () => {
+    console.log(`error in MovingOn:`, error);
+    if (error !== null) return (<p>{`Ooops!  ${error.message}`}</p>);
+    console.log(`no error. Destination:`, destination);
+    if (!destination) navigate("/home");
+    navigate(destination)
+    };
+
+  console.log(`destination:`, destination);
 
   return (
     <div className="login">
@@ -53,6 +60,7 @@ const LoginPage = () => {
           <h4>Register</h4>
         </Link>
       </nav>
+      <MovingOn/>
     </div>
   )
 };

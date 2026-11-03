@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../authentications/AuthContext.jsx";
 import { usePath } from "../assets/PathContext.jsx";
-// import { Errors } from "../assets/Errors.jsx";
 
 const RegisterPage = () => {
   const [error, setError] = useState(null);
@@ -21,6 +20,13 @@ const RegisterPage = () => {
       console.log(err);
     }
   };
+
+    const MovingOn = () => {
+    if (error !== null) return (<p>{`Ooops!  ${error.message}`}</p>);
+    if (!destination) navigate("/home");
+    navigate(destination)
+    };
+
 
   console.log(`home error:`, error);
 
@@ -47,8 +53,7 @@ const RegisterPage = () => {
           Register
         </button>
       </form>
-      <p>{error ? `Ooops!! ${error.message}` : ""}</p>
-      {/* <Errors error={error}/> */}
+      <MovingOn />
     </div>
   )
 };
