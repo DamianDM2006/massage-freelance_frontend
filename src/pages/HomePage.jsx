@@ -8,6 +8,7 @@ import { getClientData } from "../api/clients.js";
 const HomePage = () => {
   const navigate = useNavigate();
   const [services, setServices] = useState([]);
+  const [client, setClient] = useState({});
   const { token } = useAuth();
   const {
     isExisting,
@@ -68,35 +69,30 @@ const HomePage = () => {
     try {
       const clientData = await getClientData(token);
       if (clientData.patient_id !== null) setIsExisting(true);
-      console.log(`client:`, clientData);
+      setClient(clientData);
     } catch(err) {
       console.log(`ERROR:`, err);
     }
   };
-
-  console.log(`isExisting:`, isExisting);
 
   useEffect(() => {syncClient()}, []);
 
   const goToWhere = (id) => {
     console.log(`isExisting:`, isExisting);
     console.log(`id passed in:`, id);
+    setDestination("/appointments/" + id);
     if (isExisting) {
-      setDestination("/appointments/" + id);
       navigate("/appointments/" + id);
     };
 
     if (!isExisting && token) {
-      setDestination("/appointments/" + id);
-      navigate("/appointments/" + id);
+      navigate("/profile");
     } else {
-      setDestination("/appointments/" + id);
       navigate("/login")
     }
   };
 
-  console.log(`location:`, location);
-
+  console.log(`client:`, client);
   /**
    * <ServicesList >
    *  will include title: and description (as <ListDetails />  ????)
@@ -109,7 +105,7 @@ const HomePage = () => {
   return (
     <div className="home">
       <div className="welcome">
-        <h2>Home page: Welcome</h2>
+        <h2>Welcome{client.id ? `.  Your are signed in as: ${client.user_name}.` : ` to our Home Page.`}</h2>
         <p>
           This is the part where we tell you a little bit about ourselves. We hope you are impressed.
         </p>
