@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
       throw new Error(`Status: ${response.status}: ${response.statusText}!! ${result}`);
     };
     setToken(result);
-    localStorage.setItem("token", token);
+    localStorage.setItem("token", result);
     console.log(`login result:`, result);
   };
 
@@ -34,6 +34,7 @@ export const AuthProvider = ({ children }) => {
       throw new Error(`Status: ${response.status}: ${response.statusText}!! ${result}`);
     };
     setToken(result);
+    localStorage.setItem("token", result);
     console.log(`result:`, result);
   };
 
