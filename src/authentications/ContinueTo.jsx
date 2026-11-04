@@ -32,6 +32,9 @@ const ContinueTo = () => {
         <NavLink to={destination} className="cont">
           <button className="credsBtn">Continue to {destination}</button>
         </NavLink>
+        <NavLink to="/home" className="cont">
+          <button className="credsSmBtn">Return to Home page.</button>
+        </NavLink>
       </div>
   )
   };
