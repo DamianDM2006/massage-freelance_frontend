@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../authentications/AuthContext.jsx";
 import { usePath } from "../assets/PathContext.jsx";
@@ -6,8 +6,9 @@ import { usePath } from "../assets/PathContext.jsx";
 const RegisterPage = () => {
   const [error, setError] = useState(null);
   const { register } = useAuth();
-  const { destination } = usePath();
+  const { destination, isExisting } = usePath();
   const navigate = useNavigate();
+  const [client, setClient] = useState({});
 
   const tryRegister = async(formData) => {
     const userName = formData.get("userName");
@@ -15,20 +16,14 @@ const RegisterPage = () => {
 
     try {
       await register({ userName, password });
+      navigate("/continue");
     } catch(err) {
       setError(err);
       console.log(err);
     }
   };
 
-    const MovingOn = () => {
-    if (error !== null) return (<p>{`Ooops!  ${error.message}`}</p>);
-    if (!destination) navigate("/home");
-    navigate(destination)
-    };
-
-
-  console.log(`home error:`, error);
+  console.log(`register. destination:`, destination);
 
   return (
     <div className="login">
@@ -52,8 +47,8 @@ const RegisterPage = () => {
         <button className="credsBtn">
           Register
         </button>
+        {error && <p>{`Ooops!  ${error.message}`}</p>}
       </form>
-      <MovingOn />
     </div>
   )
 };

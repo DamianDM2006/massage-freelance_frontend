@@ -1,11 +1,11 @@
 import { useParams } from "react-router";
-import { usePath } from "../assets/PathContext";
+// import { usePath } from "../assets/PathContext";
 
 const AppointmentsPage = () => {
   const { id } = useParams();
-  const { location, setLocation, destination } = usePath();
-  const newLocation = destination;
-  console.log(`newLocation:`, newLocation);
+  // const { location, setLocation, destination } = usePath();
+  // const newLocation = destination;
+  // console.log(`newLocation:`, newLocation);
   // setLocation(newLocation);
   console.log(`location:`, location);
   console.log(`Appointments Page. id:`, id);

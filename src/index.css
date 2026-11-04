@@ -7,8 +7,15 @@ header {
 }
 
 .credsBtn {
+  margin: 1em;
   max-width: 30em;
   min-height: 5em;
+}
+
+.credsSmBtn {
+  margin: 1em;
+  max-width: 30em;
+  min-height: 3em;
 }
 
 .credsForm {

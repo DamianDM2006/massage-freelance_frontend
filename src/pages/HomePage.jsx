@@ -5,6 +5,7 @@ import { usePath } from "../assets/PathContext.jsx";
 import { getServices } from "../api/services.js";
 import { getClientData } from "../api/clients.js";
 
+
 const HomePage = () => {
   const navigate = useNavigate();
   const [services, setServices] = useState([]);
@@ -14,6 +15,7 @@ const HomePage = () => {
     isExisting,
     setIsExisting,
     setDestination,
+    destination,
     location,
     setLocation
   } = usePath();
@@ -27,7 +29,7 @@ const HomePage = () => {
     }
   };
   
-  useEffect(() => {syncServices();}, []);
+  useEffect(() => {syncServices()}, []);
   
   if (!services) {return (
     <div className="home">
@@ -78,21 +80,26 @@ const HomePage = () => {
   useEffect(() => {syncClient()}, []);
 
   const goToWhere = (id) => {
-    console.log(`isExisting:`, isExisting);
-    console.log(`id passed in:`, id);
+    console.log(`go to where is existing?:`, isExisting);
     setDestination("/appointments/" + id);
+    console.log(`go to where destination:`, destination);
     if (isExisting) {
       navigate("/appointments/" + id);
     };
 
     if (!isExisting && token) {
       navigate("/profile");
-    } else {
-      navigate("/login")
+    };
+
+    if (!destination && !token) {
+      navigate("/login");
     }
   };
 
-  console.log(`client:`, client);
+  console.log(`home page client:`, client);
+  console.log(`home page isExisting:`, isExisting);
+  console.log(`home page destination:`, destination);
+  
   /**
    * <ServicesList >
    *  will include title: and description (as <ListDetails />  ????)

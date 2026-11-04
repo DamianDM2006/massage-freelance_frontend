@@ -1,35 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router";
 import { useAuth } from "./AuthContext.jsx";
 import { usePath } from "../assets/PathContext.jsx";
+import { getClientData } from "../api/clients.js";
 
 const LoginPage = () => {
-  const { destination } = usePath();
-  const { login, logout } = useAuth();
+  const { destination, isExisting, setIsExisting } = usePath();
+  const { login, logout, token } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
 
   const tryLogin = async(formData) => {
     const userName = formData.get("userName");
     const password = formData.get("password");
-
+    
     try {
       await login({ userName, password });
+        if(!destination) {navigate("/home")}
+        else {navigate("/continue")};
     } catch(err) {
       setError(err);
       console.log(err)
     };
-  };  
+  };
 
-  const MovingOn = () => {
-    console.log(`error in MovingOn:`, error);
-    if (error !== null) return (<p>{`Ooops!  ${error.message}`}</p>);
-    console.log(`no error. Destination:`, destination);
-    if (!destination) navigate("/home");
-    navigate(destination)
-    };
-
-  console.log(`destination:`, destination);
+  console.log(`login. destination:`, destination);
 
   return (
     <div className="login">
@@ -53,6 +48,7 @@ const LoginPage = () => {
         <button className="credsBtn">
           Login
         </button>
+        {error && <p>{`Ooops!  ${error.message}`}</p>}
       </form>
       <nav>
         <p>If you do not have an account, Please select the link to create one.</p>
@@ -60,7 +56,6 @@ const LoginPage = () => {
           <h4>Register</h4>
         </Link>
       </nav>
-      <MovingOn/>
     </div>
   )
 };
