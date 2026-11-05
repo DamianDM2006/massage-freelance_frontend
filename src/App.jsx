@@ -9,7 +9,7 @@ import ContinueTo from "./authentications/ContinueTo.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import ServiceDetailsPage from "./pages/ServiceDetailsPage.jsx";
 import PatientDetails from "./pages/patients/PatientDetails.jsx";
-// import CreatePatient from "./pages/patients/CreatePatient.jsx";
+import CreatePatient from "./pages/patients/CreatePatient.jsx";
 import Error404 from "./Error404.jsx";
 
 const App = () => {
@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/continue" element={<ContinueTo />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/home/:id" element={<ServiceDetailsPage />} />
-        {/* <Route path="/createPatient/:id" element={<CreatePatient />} /> */}
+        <Route path="/createPatient" element={<CreatePatient />} />
         <Route path="/patient/:id" element={<PatientDetails />} />
         <Route path="*" element={<Error404 />} />
       </Route>

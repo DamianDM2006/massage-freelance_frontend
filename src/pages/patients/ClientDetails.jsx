@@ -12,7 +12,7 @@ const ClientDetails = (clientData) => {
             {`  ${client.user_name}`}
           </strong>
         </p>
-        <DisplayClient id={client.patient_id}/>
+        {client.patient_id &&<DisplayClient id={client.patient_id}/>}
       </>
     )
   };

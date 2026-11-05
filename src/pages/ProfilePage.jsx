@@ -1,5 +1,6 @@
 // /** THIS PAGE WILL DO ==>
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 import { usePath } from "../assets/PathContext.jsx";
 import { useAuth } from "../authentications/AuthContext.jsx";
 import { getClientData } from "../api/clients.js";
@@ -15,9 +16,9 @@ const ProfilePage = () => {
   const [client, setClient] = useState({});
   const [patients, setPatients] = useState([]);
   const [error, setError] = useState();
+  const navigate = useNavigate();
 
 //  *  DISPLAY THE PATIENTS ASSOCIATED WITH THE CLIENT.
-//  *    as a list <ul>
   const syncClient = async () => {
     try {
     const clientData = await getClientData(token);
@@ -28,8 +29,6 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {syncClient()}, []);
-
-
 
   const syncPatients = async () => {
     try {
@@ -45,6 +44,29 @@ const ProfilePage = () => {
 //  *  IF CLIENT DOES NOT HAVE A PATIENT (or needs to add a patient to the account)==> go to "/createPatient/:id"????
 //  *    id = client.id
 //  *      (from "/createPatient/:id" the user will be prompted to create an address for the patient)
+  const ProfileOptions = () => {
+    if (!isExisting) {
+      return (
+        <>
+          <p>
+            In order to continue, please complete the intake form.
+          </p>
+          <button className="credsSmBtn" onClick={() => {navigate("/createPatient")}}>
+            Continue to <strong>Intake</strong> Form
+          </button>
+        </>
+      );
+    };
+    
+    return (
+      <div className="withh2">
+        <h3>Add a new member to your account.</h3>
+        <button className="credsSmBtn" onClick={() => {navigate("/createPatient")}}>
+          Add Patient
+        </button>
+      </div>
+    );
+  };
 
 //  *  USER WILL BE ABLE TO SELECT WHICH PATIENT TO VIEW DETAILS OF ==> to "/patient/:id"????
 //  *    id = patient's id
@@ -52,16 +74,16 @@ const ProfilePage = () => {
 
 //  *  IF THIS PAGE IS NOT THE DESTINATION TO USER WILL BE PROMPTED TO CONTINUE TO APPOINTMENTS
 
-  // console.log(`ProfilePage client:`, client);
-  // console.log(`ProfilePage patients:`, patients);
-  // console.log(`ProfilePage error:`, error);
-  // console.log(`ProfilePage destination:`, destination);
+  // console.log(`client:`, client);
+  // console.log(`patients:`, patients);
+  // console.log(`error:`, error);
+  console.log(`destination:`, destination);
 
   return (
     <div className="profile">
       <ClientDetails client={client} />
       <PatientsList patients={patients}/>
-      <CreatePatient />
+      <ProfileOptions />
     </div>
   )
 };
