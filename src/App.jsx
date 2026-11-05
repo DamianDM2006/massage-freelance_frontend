@@ -24,7 +24,7 @@ const App = () => {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/home/:id" element={<ServiceDetailsPage />} />
         {/* <Route path="/createPatient/:id" element={<CreatePatient />} /> */}
-        {/* <Route path="/patient/:id" element={<PatientsDe} */}
+        {/* <Route path="/patient/:id" element={<PatientsDetails} */}
         <Route path="*" element={<Error404 />} />
       </Route>
     </Routes>
