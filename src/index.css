@@ -54,3 +54,8 @@ header {
 .title {
   grid-area: title;
 }
+
+.withh2 {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+}

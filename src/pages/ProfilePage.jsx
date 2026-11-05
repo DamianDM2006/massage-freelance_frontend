@@ -7,6 +7,7 @@ import { getPatients } from "../api/patients.js";
 
 import CreatePatient from "./patients/CreatePatient.jsx";
 import ClientDetails from "./patients/ClientDetails.jsx";
+import PatientsList from "./patients/PatientsList.jsx";
 
 const ProfilePage = () => {
   const { destination, isExisting } = usePath();
@@ -51,13 +52,15 @@ const ProfilePage = () => {
 
 //  *  IF THIS PAGE IS NOT THE DESTINATION TO USER WILL BE PROMPTED TO CONTINUE TO APPOINTMENTS
 
-  console.log(`ProfilePage client:`, client);
-  console.log(`ProfilePage patients:`, patients);
-  console.log(`ProfilePage error:`, error);
+  // console.log(`ProfilePage client:`, client);
+  // console.log(`ProfilePage patients:`, patients);
+  // console.log(`ProfilePage error:`, error);
+  // console.log(`ProfilePage destination:`, destination);
 
   return (
     <div className="profile">
       <ClientDetails client={client} />
+      <PatientsList patients={patients}/>
       <CreatePatient />
     </div>
   )

@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getPatient } from "../../api/patients.js";
 
-const PatientDetails = (pId) => {
+const PatientDetails = () => {
   const { token } = useAuth();
   const [patient, setPatient] = useState({});
-  const { id } = pId;
+  const [error, setError] = useState(null);
+  const { id } = useParams();
 
   const syncPatient = async() => {
     try{
@@ -13,24 +15,20 @@ const PatientDetails = (pId) => {
       setPatient(patientData);
     } catch(err) {
       console.log(err);
+      setError(err);
     }
   };
 
   useEffect(() => {syncPatient()}, [])
 
   const PatientListItems = () => {
-    const birthDate = patient.birthdate.split("T")[0];
-    console.log(`birthDate:`, birthDate, typeof birthDate);
+    const birthDate = patient.birthdate?.split("T")[0];
+
     return (
       <>
         <li>
           <p><strong>Account holder:</strong>
             {`  ${patient.client_first} ${patient.client_last}`}
-          </p>
-        </li>
-        <li>
-          <p><strong>Patient:</strong>
-            {`  ${patient.first_name} ${patient.last_name}`}
           </p>
         </li>
         <li>
@@ -54,10 +52,11 @@ const PatientDetails = (pId) => {
     )
   };
 
-  console.log(`PatientDetails patient:`, patient)
+  // console.log(`PatientDetails patient:`, patient);
   
   return (
     <>
+      <h2>{`Patient: ${patient.first_name} ${patient.last_name}`}</h2>
       <ul className="ptList">
         <PatientListItems />
       </ul>

@@ -1,8 +1,7 @@
-import PatientDetails from "./PatientDetails.jsx";
+import DisplayClient from "./DisplayClient.jsx";
 
 const ClientDetails = (clientData) => {
   const { client } = clientData;
-  console.log(`ClientDetails client:`, client);
 
   const ClientInfo = () => {
     return (
@@ -13,7 +12,7 @@ const ClientDetails = (clientData) => {
             {`  ${client.user_name}`}
           </strong>
         </p>
-        <PatientDetails id={client.patient_id}/>
+        <DisplayClient id={client.patient_id}/>
       </>
     )
   };
