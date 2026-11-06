@@ -18,6 +18,8 @@ const ProfilePage = () => {
   const [error, setError] = useState();
   const navigate = useNavigate();
 
+  if (!token) navigate("/login");
+
 //  *  DISPLAY THE PATIENTS ASSOCIATED WITH THE CLIENT.
   const syncClient = async () => {
     try {
@@ -39,7 +41,9 @@ const ProfilePage = () => {
     }
   };
 
-  useEffect(() => {syncPatients()}, []);
+  if (isExisting) {
+    useEffect(() => {syncPatients()}, []);
+  };
 
 //  *  IF CLIENT DOES NOT HAVE A PATIENT (or needs to add a patient to the account)==> go to "/createPatient/:id"????
 //  *    id = client.id

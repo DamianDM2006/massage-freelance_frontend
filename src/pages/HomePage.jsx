@@ -53,7 +53,7 @@ const HomePage = () => {
     return (
       <li>
         <span>
-          <Link to={"/home/" + service.id}>
+          <Link to={"/service/" + service.id}>
             <h4>{service.title}</h4>
           </Link>
         </span>
@@ -78,15 +78,13 @@ const HomePage = () => {
   useEffect(() => {syncClient()}, []);
 
   const goToWhere = (id) => {
-    console.log(`go to where is existing?:`, isExisting);
     setDestination("/appointments/" + id);
-    console.log(`go to where destination:`, destination);
     if (isExisting) {
       navigate("/appointments/" + id);
     };
 
     if (!isExisting && token) {
-      navigate("/profile");
+      navigate("/continue");
     };
 
     if (!destination && !token) {
@@ -97,6 +95,7 @@ const HomePage = () => {
   console.log(`client:`, client);
   console.log(`isExisting:`, isExisting);
   console.log(`destination:`, destination);
+  console.log(`current location:`, location.pathname);
   
   /**
    * <ServicesList >
