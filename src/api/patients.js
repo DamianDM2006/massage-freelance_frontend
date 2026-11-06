@@ -8,8 +8,17 @@ export const getPatients = async(token) => {
       Authorization: "Bearer " + token
     }
   });
-  const patients = await response.json();
-  return patients;
+  const contentType = response.headers.get('content-type');
+
+  if (contentType && contentType.includes('application/json')) {
+    const jsonResult = await response.json();
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${jsonResult.message}`);
+    return jsonResult;
+  } else {
+    const textResult = await response.text();
+    if (!response.ok) throw new Error(`staus ${response.status}: ${response.statusText}!! ${textResult}`);
+    return textResult;
+  };
 };
 
 export const getPatient = async(id, token) =>{
@@ -20,8 +29,17 @@ export const getPatient = async(id, token) =>{
       Authorization: "Bearer " + token
     }
   });
-  const patient = await response.json();
-  return patient;
+  const contentType = response.headers.get('content-type');
+
+  if (contentType && contentType.includes('application/json')) {
+    const jsonResult = await response.json();
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${jsonResult.message}`);
+    return jsonResult;
+  } else {
+    const textResult = await response.text();
+    if (!response.ok) throw new Error(`staus ${response.status}: ${response.statusText}!! ${textResult}`);
+    return textResult;
+  };
 };
 
 export const createPatient = async(formData, token) =>{
@@ -33,6 +51,15 @@ export const createPatient = async(formData, token) =>{
     },
     body: JSON.stringify(formData)
   });
-  const patient = await response.json();
-  return patient
+  const contentType = response.headers.get('content-type');
+
+  if (contentType && contentType.includes('application/json')) {
+    const jsonResult = await response.json();
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${jsonResult.message}`);
+    return jsonResult;
+  } else {
+    const textResult = await response.text();
+    if (!response.ok) throw new Error(`staus ${response.status}: ${response.statusText}!! ${textResult}`);
+    return textResult;
+  };
 };

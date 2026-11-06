@@ -51,8 +51,8 @@ const CreatePatient = () => {
   const tryToCreatePatient = async (data) => {
     try {
       const newPatient = await createPatient(data, token);
-      console.log(`newPatient:`, newPatient);
-      alert(`${newPatient.nickname} has been added to your account.`)
+      newPatient ? console.log(`newPatient:`, newPatient) : console.log(`no new patient`);
+      // alert(`${newPatient.nickname} has been added to your account.`)
       !destination ? navigate("/profile") : navigate(destination);
     } catch(err) {
       console.log(err);
