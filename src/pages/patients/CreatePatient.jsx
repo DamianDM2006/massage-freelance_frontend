@@ -60,6 +60,19 @@ const CreatePatient = () => {
     }
   };
 
+  const ToProfile = () => {
+    return (
+      <>
+        <p>{error.message}</p>
+        <button
+          className="credsSmBtn"
+          onClick={() => {navigate("/profile")}}>
+            Return to Profile
+        </button>
+      </>
+    )
+  };
+
   return (
     <>
       <h3>CreatePatient Form:</h3>
@@ -68,7 +81,7 @@ const CreatePatient = () => {
         <PatientFormInputs />
         <button className="credsBtn">Submit </button>
       </form>
-      {error && <p>{error.message}</p>}
+      {error && <ToProfile />}
     </>
   )
 };
