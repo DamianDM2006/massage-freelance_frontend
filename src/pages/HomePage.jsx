@@ -16,8 +16,6 @@ const HomePage = () => {
     setIsExisting,
     setDestination,
     destination,
-    location,
-    setLocation
   } = usePath();
 
   const syncServices = async() => {
@@ -96,9 +94,9 @@ const HomePage = () => {
     }
   };
 
-  console.log(`home page client:`, client);
-  console.log(`home page isExisting:`, isExisting);
-  console.log(`home page destination:`, destination);
+  console.log(`client:`, client);
+  console.log(`isExisting:`, isExisting);
+  console.log(`destination:`, destination);
   
   /**
    * <ServicesList >

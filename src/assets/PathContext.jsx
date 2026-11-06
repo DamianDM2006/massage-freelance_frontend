@@ -4,15 +4,12 @@ const PathContext = createContext();
 
 export const PathProvider = ({ children }) => {
   const [origin, setOrigin] = useState("home");
-  const [location, setLocation] = useState("home");
   const [destination, setDestination] = useState(null);
   const [isExisting, setIsExisting] = useState(false);
 
   const value = {
     origin,
     setOrigin,
-    location,
-    setLocation,
     destination,
     setDestination,
     isExisting,

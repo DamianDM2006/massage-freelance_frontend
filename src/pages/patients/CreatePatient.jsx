@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+import { useAuth } from "../../authentications/AuthContext.jsx";
+import { usePath } from "../../assets/PathContext.jsx";
+import { createPatient } from "../../api/patients.js";
+
 import PatientFormInputs from "./PatientFormInputs.jsx";
 
 const CreatePatient = () => {
-  const [query, setQuery] = useState({});
+  const [error, setError] = useState();
+  const { token } = useAuth();
+  const { destination } = usePath();
+  const navigate = useNavigate();
 
   const preProcessB4send = (event) => {
     event.preventDefault();
-    // alert(`I wonder what this will do.`);
    
     const form = event.target;
     const formData = new FormData(form);
@@ -25,8 +32,6 @@ const CreatePatient = () => {
     const bDay = formData.get("bDay");
     const birthdate = [bYear, bMonth, bDay].join("-");
 
-    // console.log(`formData:`,birthdate);
-
     const processed = {
       firstName,
       lastName,
@@ -39,14 +44,21 @@ const CreatePatient = () => {
       birthdate
     };
 
-    // console.log(`processed:`, processed);
-    setQuery(processed);
+    tryToCreatePatient(processed);
   };
 
-  console.log(query);
 
-  const tryToCreatePatient = async () => {};
-
+  const tryToCreatePatient = async (data) => {
+    try {
+      const newPatient = await createPatient(data, token);
+      console.log(`newPatient:`, newPatient);
+      alert(`${newPatient.nickname} has been added to your account.`)
+      !destination ? navigate("/profile") : navigate(destination);
+    } catch(err) {
+      console.log(err);
+      setError(err);
+    }
+  };
 
   return (
     <>
@@ -56,6 +68,7 @@ const CreatePatient = () => {
         <PatientFormInputs />
         <button className="credsBtn">Submit </button>
       </form>
+      {error && <p>{error.message}</p>}
     </>
   )
 };
