@@ -23,7 +23,7 @@ const App = () => {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/continue" element={<ContinueTo />} />
         <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/home/:id" element={<ServiceDetailsPage />} />
+        <Route path="/service/:id" element={<ServiceDetailsPage />} />
         <Route path="/createPatient" element={<CreatePatient />} />
         <Route path="/patient/:id" element={<PatientDetails />} />
         <Route path="*" element={<Error404 />} />
