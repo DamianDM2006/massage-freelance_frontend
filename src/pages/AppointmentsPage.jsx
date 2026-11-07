@@ -1,13 +1,11 @@
+import { useState } from "react";
 import { useParams } from "react-router";
-// import { usePath } from "../assets/PathContext";
+import { usePath } from "../assets/PathContext";
 
 const AppointmentsPage = () => {
   const { id } = useParams();
-  // const { location, setLocation, destination } = usePath();
-  // const newLocation = destination;
-  // console.log(`newLocation:`, newLocation);
-  // setLocation(newLocation);
-  console.log(`location.pathname:`, location.pathname, typeof location.pathname);
+  const { destination, isExisting } = usePath();
+  console.log(`location.pathname:`, location.pathname, `destination;`, destination);
   console.log(`Appointments Page. id:`, id);
 
   return (

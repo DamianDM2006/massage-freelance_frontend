@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getPatient } from "../../api/patients.js";
 
+import PatientAddress from "../addresses/PatientAddress.jsx";
+
 const PatientDetails = () => {
   const { token } = useAuth();
   const [patient, setPatient] = useState({});
@@ -14,7 +16,6 @@ const PatientDetails = () => {
       const patientData = await getPatient(id, token);
       setPatient(patientData);
     } catch(err) {
-      console.log(err);
       setError(err);
     }
   };
@@ -51,15 +52,18 @@ const PatientDetails = () => {
       </>
     )
   };
-
-  // console.log(`PatientDetails patient:`, patient);
   
+  console.log(`patient:`, patient);
+
   return (
     <>
-      <h2>{`Patient: ${patient.first_name} ${patient.last_name}`}</h2>
+      {error
+        ? <h3>{error.message}</h3>
+        : <h2>{`Patient: ${patient.first_name} ${patient.last_name}`}</h2>}
       <ul className="ptList">
-        <PatientListItems />
+        {!error && <PatientListItems />}
       </ul>
+      <PatientAddress pt={patient.patient_id} />
     </>
   )
 };

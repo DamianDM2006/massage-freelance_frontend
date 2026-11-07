@@ -16,12 +16,12 @@ export const getPatients = async(token) => {
     return jsonResult;
   } else {
     const textResult = await response.text();
-    if (!response.ok) throw new Error(`staus ${response.status}: ${response.statusText}!! ${textResult}`);
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${textResult}`);
     return textResult;
   };
 };
 
-export const getPatient = async(id, token) =>{
+export const getPatient = async(id, token) => {
   const response = await fetch(BASE_URL + "/patients/" + id, {
     method: "GET",
     headers: {
@@ -37,12 +37,12 @@ export const getPatient = async(id, token) =>{
     return jsonResult;
   } else {
     const textResult = await response.text();
-    if (!response.ok) throw new Error(`staus ${response.status}: ${response.statusText}!! ${textResult}`);
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${textResult}`);
     return textResult;
   };
 };
 
-export const createPatient = async(formData, token) =>{
+export const createPatient = async(formData, token) => {
   const response = await fetch(BASE_URL + "/patients", {
     method: "POST",
     headers: {
@@ -59,7 +59,32 @@ export const createPatient = async(formData, token) =>{
     return jsonResult;
   } else {
     const textResult = await response.text();
-    if (!response.ok) throw new Error(`staus ${response.status}: ${response.statusText}!! ${textResult}`);
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${textResult}`);
+    return textResult;
+  };
+};
+
+export const getPatientAddress = async(id, token) => {
+  // console.log(`WONDERING IF I EVEN MADE IT TO HERE.`, id);
+  const response = await fetch(BASE_URL + "/addresses/" + id, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    }
+  });
+  console.log(`response:`, response);
+  const contentType = response.headers.get('content-type');
+
+  if (contentType && contentType.includes('application/json')) {
+    const jsonResult = await response.json();
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${jsonResult.message}`);
+    // console.log(`jsonresult:`,jsonResult);
+    return jsonResult;
+  } else {
+    const textResult = await response.text();
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${textResult}`);
+    // console.log(`textResult:`, textResult);
     return textResult;
   };
 };
