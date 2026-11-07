@@ -53,7 +53,7 @@ const CreatePatient = () => {
       const newPatient = await createPatient(data, token);
       newPatient ? console.log(`newPatient:`, newPatient) : console.log(`no new patient`);
       // alert(`${newPatient.nickname} has been added to your account.`)
-      !destination ? navigate("/profile") : navigate(destination);
+      navigate("/patient/" + newPatient.id);
     } catch(err) {
       console.log(err);
       setError(err);

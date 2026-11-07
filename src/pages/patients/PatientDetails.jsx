@@ -63,7 +63,7 @@ const PatientDetails = () => {
       <ul className="ptList">
         {!error && <PatientListItems />}
       </ul>
-      <PatientAddress pt={patient.patient_id} />
+      {patient.patient_id && <PatientAddress pt={patient.patient_id} />}
     </>
   )
 };

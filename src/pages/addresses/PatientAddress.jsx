@@ -4,10 +4,12 @@ import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getPatientAddress } from "../../api/patients.js";
 
 const PatientAddress = (input) => {
-  const [address, setAddress] = useState({});
+  const [address, setAddress] = useState();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { token } = useAuth();
+
+  console.log(`input.pt:`, input.pt);
 
   const syncAddress = async() => {
     try {
@@ -19,12 +21,12 @@ const PatientAddress = (input) => {
     }
   };
 
-  useEffect(() => {syncAddress()}, [error]);
-
+  useEffect(() => {syncAddress()}, []);
+  
   console.log(`address:`, address);
   console.log(`error:`, error ? error : "no error");
 
-  if (address.id === 1) {
+  if ( !address || address.id === 1) {
     return (
       <>
         <h3>There is no address on file.</h3>
@@ -40,7 +42,7 @@ const PatientAddress = (input) => {
 
   return (
     <>
-      <h3>Patient's Address{`</>`}</h3>
+      <h3>Patient's Address{`ready to render address`}</h3>
     </>
   )
 };
