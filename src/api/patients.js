@@ -88,3 +88,25 @@ export const getPatientAddress = async(id, token) => {
     return textResult;
   };
 };
+
+export const updatePatientAddress = async(id, formData, token) => {
+  const response = await fetch(BASE_URL + "/addresses/" + id + "/patient", {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    },
+    body: JSON.stringify(formData)
+  });
+    const contentType = response.headers.get('content-type');
+
+  if (contentType && contentType.includes('application/json')) {
+    const jsonResult = await response.json();
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! `);
+    return jsonResult;
+  } else {
+    const textResult = await response.text();
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! `);
+    return textResult;
+  };
+}

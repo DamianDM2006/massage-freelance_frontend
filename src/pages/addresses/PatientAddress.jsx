@@ -26,6 +26,21 @@ const PatientAddress = (input) => {
   console.log(`address:`, address);
   console.log(`error:`, error ? error : "no error");
 
+  const Address = () => {
+    // const addArray = Object.entries(address).slice(4);
+    return (
+      <>
+        <p>{address.street_number_1}</p>
+        <p>{address.street_number_2}</p>
+        <p>{address.sub_district}</p>
+        <p>{address.district}</p>
+        <p>{address.city}</p>
+        <p>{address.provence_state}</p>
+        <p>{address.postal_code}</p>
+      </>
+    )
+  };
+
   if ( !address || address.id === 1) {
     return (
       <>
@@ -33,7 +48,7 @@ const PatientAddress = (input) => {
         <p>{`Currious about the error ${error}`}</p>
         <button
           className="credsSmBtn"
-          onClick={() => navigate("/createAddress")}>
+          onClick={() => navigate("/createAddress/" + address.patient_id)}>
             Add Address Now
         </button>
       </>
@@ -42,7 +57,8 @@ const PatientAddress = (input) => {
 
   return (
     <>
-      <h3>Patient's Address{`ready to render address`}</h3>
+      <h3>Patient's Address{` ready to render address`}</h3>
+      <Address />
     </>
   )
 };

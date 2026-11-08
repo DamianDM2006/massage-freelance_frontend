@@ -111,9 +111,7 @@ const PatientFormInputs = () => {
             max="31"
             required
             placeholder="Required"/>
-        </label>
-{/*<label>birthdate:</label>*/} {/* will combine in to "YYYY-MM-DD" format */}
-    
+        </label>    
     </>
   )
 };

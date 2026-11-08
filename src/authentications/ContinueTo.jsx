@@ -29,8 +29,10 @@ const ContinueTo = () => {
     return (
       <div className="login">
         <h3>Success! You are now logged in.</h3>
-        <NavLink to={destination} className="cont">
-          <button className="credsBtn">Continue to {destination}</button>
+        <NavLink to={ destination ? destination : "/profile" } className="cont">
+          <button className="credsBtn">
+            Continue to {destination ? destination : "Profile"}
+          </button>
         </NavLink>
         <NavLink to="/home" className="cont">
           <button className="credsSmBtn">Return to Home page.</button>

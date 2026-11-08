@@ -27,7 +27,7 @@ const App = () => {
         <Route path="/service/:id" element={<ServiceDetailsPage />} />
         <Route path="/createPatient" element={<CreatePatient />} />
         <Route path="/patient/:id" element={<PatientDetails />} />
-        <Route path="/createAddress" element={<AddressForm />} />
+        <Route path="/createAddress/:patientId" element={<AddressForm />} />
         <Route path="*" element={<Error404 />} />
       </Route>
     </Routes>
