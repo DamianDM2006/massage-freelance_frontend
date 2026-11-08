@@ -106,6 +106,8 @@ const HomePage = () => {
    *  <MakeAppt /> will take the user to the LoginPage or the AppointmentsPage
    */
 
+  console.log(`isExisting:`, isExisting);
+
   return (
     <div className="home">
       <div className="welcome">

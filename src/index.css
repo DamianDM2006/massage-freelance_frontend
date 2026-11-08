@@ -6,6 +6,10 @@ header {
     "menu title insert";
 }
 
+.appt {
+  display: grid;
+}
+
 .credsBtn {
   margin: 1em;
   max-width: 30em;

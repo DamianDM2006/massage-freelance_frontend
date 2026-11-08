@@ -38,13 +38,13 @@ const PatientDetails = () => {
           </p>
         </li>
         <li>
-          <strong>Email:</strong>{`  ${patient.email}`}
+          <strong>Email:</strong>{`  ${patient.email !== "null" ? patient.email : ""}`}
         </li>
         <li>
-          <strong>Line ID:</strong>{`  ${patient.line_user_id}`}
+          <strong>Line ID:</strong>{`  ${patient.line_user_id !== "null" ? patient.line_user_id : ""}`}
         </li>
         <li>
-          <strong>Phone:</strong>{`  ${patient.phone}`}
+          <strong>Phone:</strong>{`  ${patient.phone !== "+1 " ? patient.phon : ""}`}
         </li>
         <li>
           <strong>Birthdate:</strong>{`  ${birthDate}`}
