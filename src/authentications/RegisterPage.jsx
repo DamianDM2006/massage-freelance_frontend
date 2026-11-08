@@ -23,15 +23,18 @@ const RegisterPage = () => {
     }
   };
 
-  console.log(`register. destination:`, destination);
-
   return (
     <div className="login">
       <h2>Register page</h2>
       <form className="credsForm" action={tryRegister}>
         <label className="credsLabl">
           Username:{" "}
-          <input type="text" name="userName" maxLength="30" size="30"/>
+          <input
+            type="text"
+            name="userName"
+            maxLength="30"
+            size="30"
+            required/>
         </label>
         <label className="credsLabl">
           Password:{"  "}
@@ -42,6 +45,7 @@ const RegisterPage = () => {
             size="30"
             minLength="6"
             placeholder="6 character minimum"
+            required
           />
         </label>
         <button className="credsBtn">

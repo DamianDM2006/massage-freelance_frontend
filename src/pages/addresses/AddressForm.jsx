@@ -25,8 +25,8 @@ export const AddressForm = () => {
 
   useEffect(() => {tryUpdateAddress()}, []);
   
-  console.log(`address:`, address)
-  console.log(error ? error : "no error");
+  // console.log(`address:`, address)
+  // console.log(error ? error : "no error");
 
   return (
     <>
@@ -83,7 +83,7 @@ export const AddressForm = () => {
         </label>
         <button className="credsBtn">Submit</button>
       </form>
-
+      <h3>Needs a "Back" Button</h3>
     </>
   )
 };

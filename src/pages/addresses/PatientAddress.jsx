@@ -9,8 +9,6 @@ const PatientAddress = (input) => {
   const navigate = useNavigate();
   const { token } = useAuth();
 
-  console.log(`input.pt:`, input.pt);
-
   const syncAddress = async() => {
     try {
       const addData = await getPatientAddress(input.pt, token);
@@ -23,11 +21,10 @@ const PatientAddress = (input) => {
 
   useEffect(() => {syncAddress()}, []);
   
-  console.log(`address:`, address);
-  console.log(`error:`, error ? error : "no error");
+  // console.log(`address:`, address);
+  // console.log(`error:`, error ? error : "no error");
 
   const Address = () => {
-    // const addArray = Object.entries(address).slice(4);
     return (
       <>
         <p>{address.street_number_1}</p>
@@ -57,7 +54,7 @@ const PatientAddress = (input) => {
 
   return (
     <>
-      <h3>Patient's Address{` ready to render address`}</h3>
+      <h3>Patient's Address:</h3>
       <Address />
     </>
   )

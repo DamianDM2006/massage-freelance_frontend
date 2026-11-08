@@ -23,7 +23,6 @@ const ProfilePage = () => {
   const syncClient = async () => {
     try {
       const clientData = await getClientData(token);
-      console.log(`clientData:`, clientData);
       if (clientData.patient_id !== null && !isExisting) {
         setIsExisting(true)
       };

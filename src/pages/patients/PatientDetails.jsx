@@ -53,7 +53,7 @@ const PatientDetails = () => {
     )
   };
   
-  console.log(`patient:`, patient);
+  // console.log(`patient:`, patient);
 
   return (
     <>
