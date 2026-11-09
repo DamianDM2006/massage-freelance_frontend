@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, Navigate, useNavigate } from "react-router";
 import { useAuth } from "./AuthContext.jsx";
 import { usePath } from "../assets/PathContext.jsx";
-import { getClientData } from "../api/clients.js";
 
 const LoginPage = () => {
   const { destination, isExisting, setIsExisting } = usePath();

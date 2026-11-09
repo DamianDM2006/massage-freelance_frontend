@@ -5,7 +5,7 @@ import { usePath } from "../assets/PathContext.jsx";
 import { getServiceDetails } from "../api/services.js";
 
 const ServiceDetailsPage = () => {
-  const { id } = useParams();
+  const { serviceId, clientId, patientId } = useParams();
   const [service, setService] = useState({});
   const { token } = useAuth();
   const { destination, setDestination, isExisting } = usePath();
@@ -13,26 +13,28 @@ const ServiceDetailsPage = () => {
 
   useEffect(() => {
     const syncService = async() => {
-      const detail = await getServiceDetails(id);
+      const detail = await getServiceDetails(serviceId);
       setService(detail);
     };
     syncService();
-  }, [id]);
+  }, [serviceId]);
 
   const goToWhere = () => {
-    setDestination("/appointments/" + id);
+    setDestination(`/home/${clientId ? clientId : ":"}/service/${serviceId}/patient/${patientId ? patientId : ":"}/appointments`);
     if (isExisting) {
-      navigate("/appointments/" + id);
+      navigate(location.pathname + "/profile");
     };
 
     if (!isExisting && token) {
       navigate("/continue");
     };
 
-    if (!destination && !token) {
+    if (!token) {
       navigate("/login");
     }
   };
+
+  console.log(`current location:`, location.pathname);
 
   return (
     <div className="serveDetails">

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useNavigate, useParams, NavLink } from "react-router";
 import { useAuth } from "../authentications/AuthContext.jsx";
 import { usePath } from "../assets/PathContext.jsx";
 import { getServices } from "../api/services.js";
@@ -11,6 +11,8 @@ const HomePage = () => {
   const [services, setServices] = useState([]);
   const [client, setClient] = useState({});
   const { token } = useAuth();
+  const { clientId, serviceId, patientId } = useParams();
+  console.log(`parameters:`, clientId, serviceId);
   const {
     isExisting,
     setIsExisting,
@@ -52,11 +54,11 @@ const HomePage = () => {
   const ServiceLI = ({ service }) => {
     return (
       <li>
-        <span>
-          <Link to={"/service/" + service.id}>
+        <nav>
+          <NavLink to={clientId ? "/home/" + clientId + "/service/" + service.id : "/service/" + service.id}>
             <h4>{service.title}</h4>
-          </Link>
-        </span>
+          </NavLink>
+        </nav>
           <button onClick={() => goToWhere(service.id)}>
             <strong>Schedule Appointment</strong>
             <small>for this service</small>
@@ -70,6 +72,7 @@ const HomePage = () => {
       const clientData = await getClientData(token);
       if (clientData.patient_id !== null) setIsExisting(true);
       setClient(clientData);
+      navigate("/home/" + clientData.id);
     } catch(err) {
       console.log(`ERROR:`, err);
     }
@@ -77,25 +80,27 @@ const HomePage = () => {
 
   useEffect(() => {syncClient()}, []);
 
-  const goToWhere = (id) => {
-    setDestination("/appointments/" + id);
+  const goToWhere = (whichSvc) => {
+    setDestination("/home/" + (clientId ? clientId : ":") + "/service/" + whichSvc + "/patient/" + (patientId ? patientId : ":") + "/appointments");
+    
+    if (!token) {
+      navigate("/login");
+    }
+    
     if (isExisting) {
-      navigate("/appointments/" + id);
+      navigate("/home/" + clientId + "/service/" + whichSvc + "/profile");
     };
-
+    
     if (!isExisting && token) {
       navigate("/continue");
     };
-
-    if (!destination && !token) {
-      navigate("/login");
-    }
+    
   };
 
   // console.log(`client:`, client);
   // console.log(`isExisting:`, isExisting);
-  // console.log(`destination:`, destination);
-  // console.log(`current location:`, location.pathname);
+  console.log(`destination:`, destination);
+  console.log(`current location:`, location.pathname);
   
   /**
    * <ServicesList >
