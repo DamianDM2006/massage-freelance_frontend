@@ -24,7 +24,7 @@ const AppointmentRequest = () => {
     } catch(err) {
       setError(err);
     }
-    
+
   };
 
   console.log(`error:`, error?.message);
@@ -63,4 +63,3 @@ const AppointmentRequest = () => {
   };
 
   export default AppointmentRequest;
-

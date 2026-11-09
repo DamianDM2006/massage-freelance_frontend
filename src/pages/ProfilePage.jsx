@@ -1,6 +1,6 @@
 // /** THIS PAGE WILL DO ==>
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { usePath } from "../assets/PathContext.jsx";
 import { useAuth } from "../authentications/AuthContext.jsx";
 import { getClientData } from "../api/clients.js";
@@ -16,6 +16,7 @@ const ProfilePage = () => {
   const [patients, setPatients] = useState([]);
   const [error, setError] = useState();
   const navigate = useNavigate();
+  const { clientId, serviceId, patientId} = useParams();
 
   if (!token) navigate("/login");
 
@@ -24,7 +25,7 @@ const ProfilePage = () => {
     try {
       const clientData = await getClientData(token);
       if (clientData.patient_id !== null && !isExisting) {
-        setIsExisting(true)
+        setIsExisting(true);
       };
       setClient(clientData);
     } catch (err) {
@@ -32,9 +33,7 @@ const ProfilePage = () => {
     }
   };
 
-  useEffect(() => {
-    syncClient();
-  }, []);
+  useEffect(() => {syncClient()}, []);
 
   const syncPatients = async () => {
     try {
@@ -55,7 +54,7 @@ const ProfilePage = () => {
           <button
             className="credsSmBtn"
             onClick={() => {
-              navigate("/createPatient");
+              navigate(`/home/${client.id}/service/${serviceId}/patient/`);
             }}
           >
             Continue to <strong>Intake</strong> Form
@@ -70,7 +69,7 @@ const ProfilePage = () => {
         <button
           className="credsSmBtn"
           onClick={() => {
-            navigate("/createPatient");
+            navigate(`/home/${client.id}/service/${serviceId}/patient/`);
           }}
         >
           Add Patient
@@ -90,6 +89,8 @@ const ProfilePage = () => {
   // console.log(`error:`, error);
   // console.log(`destination:`, destination);
   // console.log(`isExisting`, isExisting);
+  // console.log(`parameters:`, clientId, serviceId, patientId);
+  // console.log(`current location:`, location.pathname);
 
   return (
     <div className="profile">

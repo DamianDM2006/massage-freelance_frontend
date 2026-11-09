@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { usePath } from "../../assets/PathContext.jsx";
 import { createPatient } from "../../api/patients.js";
@@ -11,6 +11,7 @@ const CreatePatient = () => {
   const { token } = useAuth();
   const { destination } = usePath();
   const navigate = useNavigate();
+  const { clientId, serviceId, patientId} = useParams();
 
   const preProcessB4send = (event) => {
     event.preventDefault();
@@ -53,7 +54,7 @@ const CreatePatient = () => {
       const newPatient = await createPatient(data, token);
       newPatient ? console.log(`newPatient:`, newPatient) : console.log(`no new patient`);
       // alert(`${newPatient.nickname} has been added to your account.`)
-      navigate("/patient/" + newPatient.id);
+      navigate(`/home/${clientId}/service/${serviceId}/profile`);
     } catch(err) {
       console.log(err);
       setError(err);
@@ -66,7 +67,7 @@ const CreatePatient = () => {
         <p>{error.message}</p>
         <button
           className="credsSmBtn"
-          onClick={() => {navigate("/profile")}}>
+          onClick={() => {navigate(`/home/${clientId}/service/${serviceId}/profile`)}}>
             Return to Profile
         </button>
       </>

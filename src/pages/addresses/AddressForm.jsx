@@ -9,6 +9,7 @@ export const AddressForm = () => {
   const [address, setAddress] = useState({});
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { clientId, serviceId, patientId} = useParams();
 
   const tryUpdateAddress = async(formData) => {
     const allData = Object.fromEntries(formData.entries());
@@ -17,16 +18,13 @@ export const AddressForm = () => {
       const addData = await updatePatientAddress(id.patientId, allData, token);
       setAddress(addData);
       setError(null);
-      navigate("/patient/" + id.patientId);
+    navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`);
     } catch(err) {
       setError(err);
     }
   };
 
   useEffect(() => {tryUpdateAddress()}, []);
-  
-  // console.log(`address:`, address)
-  // console.log(error ? error : "no error");
 
   return (
     <>
@@ -40,7 +38,8 @@ export const AddressForm = () => {
             name="street1"
             maxLength="100"
             placeholder="Begin typing to update your address."
-            autoFocus/>
+            autoFocus
+            required/>
         </label>
         <label><span>Address_2:</span>
           <input
@@ -83,7 +82,10 @@ export const AddressForm = () => {
         </label>
         <button className="credsBtn">Submit</button>
       </form>
-      <h3>Needs a "Back" Button</h3>
+      <button
+        className="credsSmBtn"
+        onClick={() => navigate(-1)}
+      >"Back"</button>
     </>
   )
 };

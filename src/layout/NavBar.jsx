@@ -3,13 +3,14 @@
  * 1. standard screen: entire menu displayed all the time
  * 2. mobile screen w/ drop down type menu
  */
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate, useParams } from "react-router";
 import { useAuth } from "../authentications/AuthContext.jsx";
 import { usePath } from "../assets/PathContext.jsx";
 
 const NavBar = () => {
   const { logout, token } = useAuth();
   const { setDestination } = usePath();
+  const { clientId, serviceId,} = useParams();
   const navigate = useNavigate();
 
   const excecute = () => {
@@ -30,12 +31,21 @@ const NavBar = () => {
     };
   };
 
+  const ProfileLink = () => {
+    // setDestination(`/home/${clientId ? clientId : ":"}/service/${serviceId ? serviceId : ":"}/profile`);
+    return (
+      <NavLink to={`/home/${clientId}/service/${serviceId}/profile`}>
+      {/* // <Link to="profile"> */}
+        Profile
+      </NavLink>
+    )
+  };
+
   return (
     <nav className="menu">
       <NavLink to="/home">Home</NavLink>
-      <NavLink to="/appointments">Appointments</NavLink>
       <LogLink />
-      <NavLink to="/profile">Profile</NavLink>
+      <ProfileLink />
     </nav>
   )
 };
