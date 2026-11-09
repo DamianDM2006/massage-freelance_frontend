@@ -31,11 +31,21 @@ const NavBar = () => {
     };
   };
 
+  const ProfileLink = () => {
+    // setDestination(`/home/${clientId ? clientId : ":"}/service/${serviceId ? serviceId : ":"}/profile`);
+    return (
+      <NavLink to={`/home/${clientId}/service/${serviceId}/profile`}>
+      {/* // <Link to="profile"> */}
+        Profile
+      </NavLink>
+    )
+  };
+
   return (
     <nav className="menu">
       <NavLink to="/home">Home</NavLink>
       <LogLink />
-      <NavLink to={`/home/${clientId ? clientId : ":"}/service/${serviceId ? serviceId : ":"}/profile`}>Profile</NavLink>
+      <ProfileLink />
     </nav>
   )
 };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getPatient } from "../../api/patients.js";
 
@@ -9,11 +9,12 @@ const PatientDetails = () => {
   const { token } = useAuth();
   const [patient, setPatient] = useState({});
   const [error, setError] = useState(null);
-  const { id } = useParams();
+  const navigate = useNavigate();
+  const { clientId, serviceId, patientId} = useParams();
 
   const syncPatient = async() => {
     try{
-      const patientData = await getPatient(id, token);
+      const patientData = await getPatient(patientId, token);
       setPatient(patientData);
     } catch(err) {
       setError(err);
@@ -53,8 +54,6 @@ const PatientDetails = () => {
     )
   };
   
-  // console.log(`patient:`, patient);
-
   return (
     <>
       {error
@@ -64,6 +63,10 @@ const PatientDetails = () => {
         {!error && <PatientListItems />}
       </ul>
       {patient.patient_id && <PatientAddress pt={patient.patient_id} />}
+      <button className="credsSmBtn"
+        onClick={() => {navigate(`/home/${clientId}/service/${serviceId}/profile`)}}>
+        Return to Profile
+      </button>
     </>
   )
 };

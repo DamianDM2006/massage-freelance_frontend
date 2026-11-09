@@ -18,21 +18,25 @@ const ContinueTo = () => {
             In order to continue, we need to learn a little more about you.
             </strong>{`  `}We would now like to direct you to your profile area in order to complete setting up your account.
           </p>
-        <NavLink to={"/home/" + clientId + "/service/" + serviceId + "/profile"} className="cont">
-          <button className="credsBtn">Continue to your profile page.</button>
-        </NavLink>
-        <NavLink to={"/home/" + clientId} className="cont">
-          <button className="credsSmBtn">Return to Home page.</button>
-        </NavLink>
+        <nav>
+          <NavLink to={"/home/" + clientId + "/service/" + serviceId + "/profile"} className="cont">
+            <button className="credsBtn">Continue to your profile page.</button>
+          </NavLink>
+          <NavLink to={"/home/" + clientId} className="cont">
+            <button className="credsSmBtn">Return to Home page.</button>
+          </NavLink>
+        </nav>
       </div>
     )
   };
 
   if (isExisting === true) {
     return (
-      <div className="login">
+      <nav className="login">
         <h3>Success! You are now logged in.</h3>
-        <NavLink to={ destination ? destination : "/profile" } className="cont">
+        <NavLink
+          className="cont"
+          to="/home/${clientId}/service/${serviceId}/profile">
           <button className="credsBtn">
             Continue to {destination ? destination : "Profile"}
           </button>
@@ -40,7 +44,7 @@ const ContinueTo = () => {
         <NavLink to="/home" className="cont">
           <button className="credsSmBtn">Return to Home page.</button>
         </NavLink>
-      </div>
+      </nav>
   )
   };
 

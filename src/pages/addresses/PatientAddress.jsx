@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getPatientAddress } from "../../api/patients.js";
 
@@ -7,6 +7,7 @@ const PatientAddress = (input) => {
   const [address, setAddress] = useState();
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { clientId, serviceId, patientId} = useParams();
   const { token } = useAuth();
 
   const syncAddress = async() => {
@@ -45,7 +46,7 @@ const PatientAddress = (input) => {
         <p>{`Currious about the error ${error}`}</p>
         <button
           className="credsSmBtn"
-          onClick={() => navigate("/createAddress/" + address.patient_id)}>
+          onClick={() => navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}/createAddress`)}>
             Add Address Now
         </button>
       </>

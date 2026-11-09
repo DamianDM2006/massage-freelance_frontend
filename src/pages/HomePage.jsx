@@ -12,7 +12,6 @@ const HomePage = () => {
   const [client, setClient] = useState({});
   const { token } = useAuth();
   const { clientId, serviceId, patientId } = useParams();
-  console.log(`parameters:`, clientId, serviceId);
   const {
     isExisting,
     setIsExisting,
@@ -81,8 +80,7 @@ const HomePage = () => {
   useEffect(() => {syncClient()}, []);
 
   const goToWhere = (whichSvc) => {
-    setDestination("/home/" + (clientId ? clientId : ":") + "/service/" + whichSvc + "/patient/" + (patientId ? patientId : ":") + "/appointments");
-    
+    // setDestination("/home/" + (clientId ? clientId : ":") + "/service/" + whichSvc + "/patient/" + (patientId ? patientId : ":") + "/appointments");
     if (!token) {
       navigate("/login");
     }
@@ -94,13 +92,12 @@ const HomePage = () => {
     if (!isExisting && token) {
       navigate("/continue");
     };
-    
   };
 
   // console.log(`client:`, client);
   // console.log(`isExisting:`, isExisting);
-  console.log(`destination:`, destination);
-  console.log(`current location:`, location.pathname);
+  // console.log(`destination:`, destination);
+  // console.log(`current location:`, location.pathname);
   
   /**
    * <ServicesList >

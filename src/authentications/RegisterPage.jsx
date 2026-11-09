@@ -1,14 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "../authentications/AuthContext.jsx";
-import { usePath } from "../assets/PathContext.jsx";
 
 const RegisterPage = () => {
   const [error, setError] = useState(null);
   const { register } = useAuth();
-  const { destination, isExisting } = usePath();
   const navigate = useNavigate();
-  const [client, setClient] = useState({});
 
   const tryRegister = async(formData) => {
     const userName = formData.get("userName");
