@@ -1,5 +1,5 @@
-/** retrieving appointment data from the database
- *  changing appointment data from the database
- * 
- * talks to the database reguarding appointments
- */
+import { BASE_URL } from "./index.js";
+
+export const getAvailability = async() => {
+  console.log(`BASE_URL:`, BASE_URL);
+};
