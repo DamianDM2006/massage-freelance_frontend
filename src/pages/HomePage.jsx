@@ -95,11 +95,10 @@ const HomePage = () => {
   
   /**
    * <ServicesList >
-   *  will include title: and description (as <ListDetails />  ????)
+   *  will include title: and description 
    *  will eventually include
    *    cost:
    *    duration:
-   *  <MakeAppt /> will take the user to the LoginPage or the AppointmentsPage
    */
 
   return (

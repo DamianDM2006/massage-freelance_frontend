@@ -1,3 +1,8 @@
+// NO LONGER UTILIZING THIS FILE/ELEMENT.
+// I'M KEEPING IT HERE FOR NOW --- JUST IN CASE.
+// SLATED FOR --- DELETION ---- !!!!
+
+
 import { usePath } from "../assets/PathContext";
 import { NavLink, useParams } from "react-router";
 

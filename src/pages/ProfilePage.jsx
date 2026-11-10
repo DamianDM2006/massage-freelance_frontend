@@ -1,4 +1,3 @@
-// /** THIS PAGE WILL DO ==>
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { usePath } from "../assets/PathContext.jsx";
@@ -61,7 +60,7 @@ const ProfilePage = () => {
           </button>
         </>
       );
-    }
+    };
 
     return (
       <div className="withh2">
@@ -87,7 +86,7 @@ const ProfilePage = () => {
   // console.log(`client:`, client);
   // console.log(`patients:`, patients);
   // console.log(`error:`, error);
-  // console.log(`destination:`, destination);
+  console.log(`destination:`, destination);
   // console.log(`isExisting`, isExisting);
   // console.log(`parameters:`, clientId, serviceId, patientId);
   // console.log(`current location:`, location.pathname);

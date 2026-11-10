@@ -2,14 +2,17 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getPatient } from "../../api/patients.js";
+import { usePath } from "../../assets/PathContext.jsx";
 
 import PatientAddress from "../addresses/PatientAddress.jsx";
+import SetApptPatient from "../appointments/SetApptPatient.jsx";
 
 const PatientDetails = () => {
   const { token } = useAuth();
   const [patient, setPatient] = useState({});
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { destination, setDestination } = usePath();
   const { clientId, serviceId, patientId} = useParams();
 
   const syncPatient = async() => {
@@ -53,6 +56,8 @@ const PatientDetails = () => {
       </>
     )
   };
+
+  console.log(`destination:`, destination);
   
   return (
     <>
@@ -67,6 +72,11 @@ const PatientDetails = () => {
         onClick={() => {navigate(`/home/${clientId}/service/${serviceId}/profile`)}}>
         Return to Profile
       </button>
+{/** This button will be imported as it's own element: Patient Details & PatientList will use it.
+ * className will be defined on each page because the size of the button varies by page.
+ * let's call it <SetApptPatient />
+ */}              
+        <SetApptPatient />
     </>
   )
 };
