@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useParams } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getAvailability } from "../../api/appointments.js";
 
 const AppointmentRequest = () => {
-  const [isAvailable, setIsAvailable] = useState(false);
+  const { clientId, serviceId, patientId } = useParams();
   const [error, setError] = useState(null);
   const { token } = useAuth();
+  const [isAvailable, setIsAvailable] = useState(false);
 
   const checkAvailability = async(formData) => {
     try {
@@ -20,13 +22,17 @@ const AppointmentRequest = () => {
         throw new Error(`Invalid "Time" syntax.  Must be in the form "HH:MM".`)
       };
       if (request.startTime >= request.endTime) throw new Error('Invalid "Time" request. "Finished Time" must be after "Start Time".');
-    const available = await getAvailability();
+    const available = await getAvailability(patientId, request, token);
+    console.log(`available:`, available);
+    setIsAvailable(available);
+    return request;
+    setError(null);
     } catch(err) {
       setError(err);
     }
-
   };
 
+  console.log(`parameters:`, clientId, serviceId, patientId)
   console.log(`error:`, error?.message);
 
   return (
@@ -63,3 +69,4 @@ const AppointmentRequest = () => {
   };
 
   export default AppointmentRequest;
+  

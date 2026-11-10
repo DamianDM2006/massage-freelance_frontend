@@ -89,7 +89,7 @@ const HomePage = () => {
   };
 
   // console.log(`client:`, client);
-  // console.log(`isExisting:`, isExisting);
+  console.log(`isExisting:`, isExisting);
   // console.log(`destination:`, destination);
   // console.log(`current location:`, location.pathname);
   

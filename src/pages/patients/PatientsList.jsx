@@ -7,6 +7,7 @@ import SetApptPatient from "../appointments/SetApptPatient.jsx";
 const PatientsList = (ptData) => {
   const { patients } = ptData;
   const { clientId, serviceId } = useParams();
+  const [patient, setPatient] = useState({});
 
   const PatientsLi = () => {
     return patients.map((pt) => {
@@ -23,7 +24,7 @@ const PatientsList = (ptData) => {
  * className will be defined on each page because the size of the button varies by page.
  * let's call it <SetApptPatient />
  */}              
-              <SetApptPatient />
+              <SetApptPatient id={pt.id}/>
             </nav>
         </li>
       )

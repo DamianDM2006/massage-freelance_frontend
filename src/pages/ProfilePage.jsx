@@ -86,8 +86,8 @@ const ProfilePage = () => {
   // console.log(`client:`, client);
   // console.log(`patients:`, patients);
   // console.log(`error:`, error);
-  console.log(`destination:`, destination);
-  // console.log(`isExisting`, isExisting);
+  // console.log(`destination:`, destination);
+  console.log(`isExisting`, isExisting);
   // console.log(`parameters:`, clientId, serviceId, patientId);
   // console.log(`current location:`, location.pathname);
 

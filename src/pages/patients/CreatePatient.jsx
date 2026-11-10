@@ -9,7 +9,7 @@ import PatientFormInputs from "./PatientFormInputs.jsx";
 const CreatePatient = () => {
   const [error, setError] = useState();
   const { token } = useAuth();
-  const { destination } = usePath();
+  const { setIsExisting } = usePath();
   const navigate = useNavigate();
   const { clientId, serviceId, patientId} = useParams();
 
@@ -52,8 +52,8 @@ const CreatePatient = () => {
   const tryToCreatePatient = async (data) => {
     try {
       const newPatient = await createPatient(data, token);
-      newPatient ? console.log(`newPatient:`, newPatient) : console.log(`no new patient`);
       // alert(`${newPatient.nickname} has been added to your account.`)
+      setIsExisting(true);
       navigate(`/home/${clientId}/service/${serviceId}/profile`);
     } catch(err) {
       console.log(err);
