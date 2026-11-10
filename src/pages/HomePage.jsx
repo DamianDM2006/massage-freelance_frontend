@@ -80,17 +80,11 @@ const HomePage = () => {
   useEffect(() => {syncClient()}, []);
 
   const goToWhere = (whichSvc) => {
-    // setDestination("/home/" + (clientId ? clientId : ":") + "/service/" + whichSvc + "/patient/" + (patientId ? patientId : ":") + "/appointments");
+    setDestination(`/home/${clientId}/service/${whichSvc}/patient/${patientId}/appointments`);
     if (!token) {
       navigate("/login");
-    }
-    
-    if (isExisting) {
-      navigate("/home/" + clientId + "/service/" + whichSvc + "/profile");
-    };
-    
-    if (!isExisting && token) {
-      navigate("/continue");
+    } else {
+      navigate(`/home/${clientId}/service/${whichSvc}/profile`);
     };
   };
 
@@ -107,8 +101,6 @@ const HomePage = () => {
    *    duration:
    *  <MakeAppt /> will take the user to the LoginPage or the AppointmentsPage
    */
-
-  console.log(`isExisting:`, isExisting);
 
   return (
     <div className="home">

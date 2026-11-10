@@ -18,7 +18,7 @@ const ProfilePage = () => {
   const navigate = useNavigate();
   const { clientId, serviceId, patientId} = useParams();
 
-  if (!token) navigate("/login");
+  if (!token) throw new Error(`Unathorized Attempt`);
 
   //  *  DISPLAY THE PATIENTS ASSOCIATED WITH THE CLIENT.
   const syncClient = async () => {

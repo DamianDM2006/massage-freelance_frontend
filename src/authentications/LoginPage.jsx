@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { Link, Navigate, useNavigate } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import { useAuth } from "./AuthContext.jsx";
 import { usePath } from "../assets/PathContext.jsx";
 
 const LoginPage = () => {
-  const { destination, isExisting, setIsExisting } = usePath();
+  const { destination } = usePath();
   const { login, logout, token } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
+  const { clientId, serviceId } = useParams();
 
   const tryLogin = async(formData) => {
     const userName = formData.get("userName");
@@ -15,8 +16,12 @@ const LoginPage = () => {
     
     try {
       await login({ userName, password });
-        if(!destination) {navigate("/home")}
-        else {navigate("/continue")};
+        if(!destination) {
+          navigate(`/home/${clientId}`);
+        } else {
+          const svc = destination.split("/")[4];
+          navigate(`/home/${clientId}/service/${svc}/profile`)
+        };
     } catch(err) {
       setError(err);
       console.log(err)

@@ -13,17 +13,34 @@ const NavBar = () => {
   const { clientId, serviceId,} = useParams();
   const navigate = useNavigate();
 
+  const HomeLink = () => {
+    if (token) {
+      return (
+        <NavLink to={`/home/${clientId}`}>
+          Home
+        </NavLink>
+      )
+    } else {
+      return (
+        <NavLink to="/home" >
+          Home
+        </NavLink>
+      )
+    }
+  };
+
   const excecute = () => {
     logout();
     setDestination(null);
     navigate("/home");
+    window.location.reload();
   };
   
   const LogLink = () => {
     if(token !== null) {
       return (
         <form action={excecute}>
-          <button type="submit">Logout</button>
+          <button type="submit" >Logout</button>
         </form>
     )
     } else {
@@ -32,18 +49,18 @@ const NavBar = () => {
   };
 
   const ProfileLink = () => {
-    // setDestination(`/home/${clientId ? clientId : ":"}/service/${serviceId ? serviceId : ":"}/profile`);
-    return (
-      <NavLink to={`/home/${clientId}/service/${serviceId}/profile`}>
-      {/* // <Link to="profile"> */}
-        Profile
-      </NavLink>
-    )
+    if (token) {
+        return (
+        <NavLink to={`/home/${clientId}/service/${serviceId}/profile`}>
+          Profile
+        </NavLink>
+      )
+    } 
   };
 
   return (
     <nav className="menu">
-      <NavLink to="/home">Home</NavLink>
+      <HomeLink />
       <LogLink />
       <ProfileLink />
     </nav>

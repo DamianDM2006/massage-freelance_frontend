@@ -20,21 +20,15 @@ const ServiceDetailsPage = () => {
   }, [serviceId]);
 
   const goToWhere = () => {
-    setDestination(`/home/${clientId ? clientId : ":"}/service/${serviceId}/patient/${patientId ? patientId : ":"}/appointments`);
-    if (isExisting) {
-      navigate(location.pathname + "/profile");
-    };
-
-    if (!isExisting && token) {
-      navigate("/continue");
-    };
-
+    setDestination(`/home/${clientId}/service/${serviceId}/patient/${patientId}/appointments`);
     if (!token) {
       navigate("/login");
-    }
+    } else {
+      navigate(`/home/${clientId}/service/${serviceId}/profile`);
+    };
   };
 
-  console.log(`current location:`, location.pathname);
+  console.log(`destination:`, destination);
 
   return (
     <div className="serveDetails">
@@ -45,7 +39,11 @@ const ServiceDetailsPage = () => {
             onClick={() => {goToWhere()}}>
               <strong>Schedule an Appointment</strong> <small>for this service</small>
           </button>
-          <h3>Needs a "back" button.</h3>
+          <button
+            className="credsSmBtn"
+            onClick={() => navigate(-1)}>
+            "back"
+          </button>
     </div>
   )
 };
