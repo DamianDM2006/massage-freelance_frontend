@@ -3,6 +3,7 @@ import { NavLink, useParams } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 
 import SetApptPatient from "../appointments/SetApptPatient.jsx";
+import DisplayPatientAppt from "../appointments/DisplayPatientAppt.jsx";
 
 const PatientsList = (ptData) => {
   const { patients } = ptData;
@@ -21,6 +22,7 @@ const PatientsList = (ptData) => {
                 </p>
               </NavLink>
               <SetApptPatient id={pt.id}/>
+              {pt.id && <DisplayPatientAppt id={pt.id}/>}
             </nav>
         </li>
       )

@@ -6,6 +6,7 @@ import { usePath } from "../../assets/PathContext.jsx";
 
 import PatientAddress from "../addresses/PatientAddress.jsx";
 import SetApptPatient from "../appointments/SetApptPatient.jsx";
+import DisplayPatientAppt from "../appointments/DisplayPatientAppt.jsx";
 
 const PatientDetails = () => {
   const { token } = useAuth();
@@ -71,6 +72,7 @@ const PatientDetails = () => {
         Return to Profile
       </button>
       <SetApptPatient id={patient.patient_id}/>
+      {patient.patient_id && <DisplayPatientAppt id={patient.patient_id}/>}
     </>
   )
 };
