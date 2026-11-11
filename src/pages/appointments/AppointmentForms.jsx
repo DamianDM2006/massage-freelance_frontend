@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getAvailability, scheduleAppt } from "../../api/appointments.js";
 
@@ -23,67 +23,94 @@ const AppointmentRequest = () => {
     
     try {
       const result = await getAvailability(patientId, request, token);
+      console.log(`result:`, result);
+      setIsAvailable(result.available);
+      if (result.available === false) {
+        throw new Error(`The requested slot on ${result.requested.date} from ${result.requested.startTime} to ${result.requested.endTime} is not available.`)
+      }
       let newResult = result;
       newResult.requested.serviceId = serviceId; 
       // console.log(`newResult after:`, newResult);
       setRequested(newResult);
-      setIsAvailable(result.available);
       setError(null);
     } catch(err) {
       setError(err);
     }
   };
 
+  const ResetError = () => {
+    setError(null);
+  };
+
+  const HandleError = () => {
+    return (
+      <>
+        <p>{error.message}</p>
+        <button onClick={() => ResetError()}>Reset Request Form</button>
+      </>
+    )
+  };
+
+  const AppointmentForm = () => {
+    return (
+      <>
+        <p>When would you prefer to make this appointment for?</p>
+        <form
+          action={checkAvailability}
+          className="appt">
+          <label>Date
+            <input
+              name="date"
+              type="date"/>
+          </label>
+          <label>Start Time
+            <input
+              name="startTime"
+              type="time"/>
+          </label>
+          <label>Finished Time
+            <input
+              name="endTime"
+              type="time"/>
+          </label>
+          {!isAvailable && <button className="credsSmBtn">Check availability</button>}
+        </form>
+      </>
+    )
+  };
+
   console.log(`requested:`, requested.requested);
   // console.log(`parameters:`, clientId, serviceId, patientId)
   // console.log(`isAvailable:`, isAvailable);
-  // console.log(`error:`, error?.message);
+  console.log(`error:`, error?.message);
 
   return (
     <>
-      <p>When would you prefer to make this appointment for?</p>
-      <form
-        action={checkAvailability}
-        className="appt">
-        <label>Date
-          <input
-            name="date"
-            type="date"/>
-        </label>
-        <label>Start Time
-          <input
-            name="startTime"
-            type="time"/>
-        </label>
-        <label>Finished Time
-          <input
-            name="endTime"
-            type="time"/>
-        </label>
-        {!isAvailable && <button className="credsSmBtn">Check availability</button>}
-        {/* <p>Once availability is confirmed. The button will change to "Schedule Appointment"</p>
-        <p>Upon submit "Schedule Appointment": will navigate to PatientDetails AND render future appointments.  Will also render
-          appointment dates on Profile page to show which patients have future appointments. Adding a prompt to cancel appoints (two step process).
-        </p> */}
-      </form>
+      {!error && !isAvailable && <AppointmentForm />}
       {isAvailable && <SetAppointment requested={requested.requested} />}
+      {error && <HandleError />}
     </>
   )
   };
 
-  export default AppointmentRequest;
+export default AppointmentRequest;
   
 export const SetAppointment = (reqBody) => {
-  const { patientId } = useParams();
+  const { clientId, serviceId, patientId } = useParams();
   const { token } = useAuth();
   const [error, setError] = useState(null);
+  const [appoint, setAppoint] = useState({});
+  const navigate = useNavigate();
   console.log(`reqBody`, reqBody.requested);
 
   const trySchedule = async() => {
 
-    const scheduled = await scheduleAppt(patientId, reqBody.requested, token);
     try {
-
+      const scheduled = await scheduleAppt(patientId, reqBody.requested, token);
+      console.log(`scheduled@@@@@@@@@@@:`, scheduled);
+      setAppoint(scheduled);
+      navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`);
+      /*        /home/:clientId/service/:serviceId/patient/:patientId/appointments*/
     } catch (err) {
       console.log(err);
       setError(err);
@@ -101,6 +128,7 @@ export const SetAppointment = (reqBody) => {
           Sets Appointment After Check Availability
         </button>
       </form>
+      {error && <p>{error.message}</p>}
     </>
   )
 };

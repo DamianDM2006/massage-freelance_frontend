@@ -76,7 +76,7 @@ const PatientDetails = () => {
  * className will be defined on each page because the size of the button varies by page.
  * let's call it <SetApptPatient />
  */}              
-        <SetApptPatient />
+        <SetApptPatient id={patient.patient_id}/>
     </>
   )
 };

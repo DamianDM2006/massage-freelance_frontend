@@ -28,7 +28,7 @@ const ServiceDetailsPage = () => {
     };
   };
 
-  console.log(`destination:`, destination);
+  // console.log(`destination:`, destination);
 
   return (
     <div className="serveDetails">
