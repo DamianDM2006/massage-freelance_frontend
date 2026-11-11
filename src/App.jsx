@@ -5,7 +5,6 @@ import HomePage from "./pages/HomePage.jsx";
 import LoginPage from "./authentications/LoginPage.jsx";
 import RegisterPage from "./authentications/RegisterPage.jsx";
 import ServiceDetailsPage from "./pages/ServiceDetailsPage.jsx";
-// import ContinueTo from "./authentications/ContinueTo.jsx";
 import ProfilePage from "./pages/ProfilePage.jsx";
 import CreatePatient from "./pages/patients/CreatePatient.jsx";
 import PatientDetails from "./pages/patients/PatientDetails.jsx";
@@ -30,7 +29,6 @@ const App = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/service/:serviceId" element={<ServiceDetailsPage />} />
-        {/* <Route path="/continue" element={<ContinueTo />} /> */}
         <Route path="*" element={<Error404 />} />
       </Route>
     </Routes>
