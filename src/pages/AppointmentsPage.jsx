@@ -10,7 +10,7 @@ const AppointmentsPage = () => {
   // const { id } = useParams(); /* references service id */
   // console.log(`location.pathname:`, location.pathname, `destination;`, destination);
   // console.log(`Appointments Page. id:`, id);
-  console.log(`isExisting:`, isExisting);
+  // console.log(`isExisting:`, isExisting);
 
   return (
     <div className="Appts">

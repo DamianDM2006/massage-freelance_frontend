@@ -25,3 +25,9 @@ export const getAvailability = async(patId, request, token) => {
     return textResult;
   }
 };
+
+export const scheduleAppt = async(patId, reqBody, token) => {
+  console.log(`I've made it to scheduleAppt.`);
+  console.log(`patId:`, patId);
+  console.log(`reqBody:`, reqBody);
+};
