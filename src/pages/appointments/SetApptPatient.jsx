@@ -18,7 +18,6 @@ const SetApptPatient = (id) => {
   };
 
   const NoSvcChosen = () => {
-    console.log(`noSvcChosen. Please choose a service you'd like to schedule.`);
     return (
       <nav>
         <NavLink to={`/home/${clientId}`}>
@@ -27,13 +26,7 @@ const SetApptPatient = (id) => {
       </nav>
     )
   };
-  /**
-   * if !destination: display services list
-   *   it would be nice to have a drop down selection
-  *      but, I think the existing list will work. I'll see.
-   */
 
-  console.log(`destination:`, destination);
   return (
     <nav>
       <button onClick={() => requestAppt()}>

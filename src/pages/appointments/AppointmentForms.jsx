@@ -23,7 +23,6 @@ const AppointmentRequest = () => {
     
     try {
       const result = await getAvailability(patientId, request, token);
-      console.log(`result:`, result);
       setIsAvailable(result.available);
       if (result.available === false) {
         throw new Error(`The requested slot on ${result.requested.date} from ${result.requested.startTime} to ${result.requested.endTime} is not available.`)
@@ -79,11 +78,6 @@ const AppointmentRequest = () => {
     )
   };
 
-  console.log(`requested:`, requested.requested);
-  // console.log(`parameters:`, clientId, serviceId, patientId)
-  // console.log(`isAvailable:`, isAvailable);
-  console.log(`error:`, error?.message);
-
   return (
     <>
       {!error && !isAvailable && <AppointmentForm />}
@@ -101,13 +95,11 @@ export const SetAppointment = (reqBody) => {
   const [error, setError] = useState(null);
   const [appoint, setAppoint] = useState({});
   const navigate = useNavigate();
-  console.log(`reqBody`, reqBody.requested);
 
   const trySchedule = async() => {
 
     try {
       const scheduled = await scheduleAppt(patientId, reqBody.requested, token);
-      console.log(`scheduled@@@@@@@@@@@:`, scheduled);
       setAppoint(scheduled);
       navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`);
       /*        /home/:clientId/service/:serviceId/patient/:patientId/appointments*/

@@ -28,8 +28,6 @@ const LoginPage = () => {
     };
   };
 
-  console.log(`destination:`, destination);
-
   return (
     <div className="login">
       <h2>Login to Full Moon Massage.</h2>

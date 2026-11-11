@@ -20,10 +20,6 @@ const PatientsList = (ptData) => {
                   Born:<strong>{`  ${pt.birthdate.split("T")[0]}`}</strong>
                 </p>
               </NavLink>
-{/** This button will be imported as it's own element: Patient Details & PatientList will use it.
- * className will be defined on each page because the size of the button varies by page.
- * let's call it <SetApptPatient />
- */}              
               <SetApptPatient id={pt.id}/>
             </nav>
         </li>

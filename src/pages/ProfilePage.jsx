@@ -77,20 +77,6 @@ const ProfilePage = () => {
     );
   };
 
-  //  *  USER WILL BE ABLE TO SELECT WHICH PATIENT TO VIEW DETAILS OF ==> to "/patient/:id"????
-  //  *    id = patient's id
-  //  *      (from "/patient/:id" the user will be prompted to edit patient details if needed)
-
-  //  *  IF THIS PAGE IS NOT THE DESTINATION TO USER WILL BE PROMPTED TO CONTINUE TO APPOINTMENTS ????
-
-  // console.log(`client:`, client);
-  // console.log(`patients:`, patients);
-  // console.log(`error:`, error);
-  // console.log(`destination:`, destination);
-  console.log(`isExisting`, isExisting);
-  // console.log(`parameters:`, clientId, serviceId, patientId);
-  // console.log(`current location:`, location.pathname);
-
   return (
     <div className="profile">
       <ClientDetails client={client} />

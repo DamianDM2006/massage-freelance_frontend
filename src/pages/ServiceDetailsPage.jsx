@@ -28,8 +28,6 @@ const ServiceDetailsPage = () => {
     };
   };
 
-  // console.log(`destination:`, destination);
-
   return (
     <div className="serveDetails">
       <h2>{service.title}</h2>

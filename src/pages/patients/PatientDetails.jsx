@@ -56,8 +56,6 @@ const PatientDetails = () => {
       </>
     )
   };
-
-  console.log(`destination:`, destination);
   
   return (
     <>
@@ -72,11 +70,7 @@ const PatientDetails = () => {
         onClick={() => {navigate(`/home/${clientId}/service/${serviceId}/profile`)}}>
         Return to Profile
       </button>
-{/** This button will be imported as it's own element: Patient Details & PatientList will use it.
- * className will be defined on each page because the size of the button varies by page.
- * let's call it <SetApptPatient />
- */}              
-        <SetApptPatient id={patient.patient_id}/>
+      <SetApptPatient id={patient.patient_id}/>
     </>
   )
 };
