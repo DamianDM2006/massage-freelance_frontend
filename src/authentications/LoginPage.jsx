@@ -5,10 +5,10 @@ import { usePath } from "../assets/PathContext.jsx";
 
 const LoginPage = () => {
   const { destination } = usePath();
-  const { login, logout, token } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
   const [error, setError] = useState(null);
-  const { clientId, serviceId } = useParams();
+  const { clientId } = useParams();
 
   const tryLogin = async(formData) => {
     const userName = formData.get("userName");

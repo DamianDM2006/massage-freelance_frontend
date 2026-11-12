@@ -8,7 +8,7 @@ const ServiceDetailsPage = () => {
   const { serviceId, clientId, patientId } = useParams();
   const [service, setService] = useState({});
   const { token } = useAuth();
-  const { destination, setDestination, isExisting } = usePath();
+  const { setDestination } = usePath();
   const navigate = useNavigate();
 
   useEffect(() => {

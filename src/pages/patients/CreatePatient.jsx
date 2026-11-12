@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { usePath } from "../../assets/PathContext.jsx";
@@ -11,7 +11,7 @@ const CreatePatient = () => {
   const { token } = useAuth();
   const { setIsExisting } = usePath();
   const navigate = useNavigate();
-  const { clientId, serviceId, patientId} = useParams();
+  const { clientId, serviceId } = useParams();
 
   const preProcessB4send = (event) => {
     event.preventDefault();
@@ -52,7 +52,7 @@ const CreatePatient = () => {
   const tryToCreatePatient = async (data) => {
     try {
       const newPatient = await createPatient(data, token);
-      // alert(`${newPatient.nickname} has been added to your account.`)
+      alert(`${newPatient.nickname} has been added to your account.`)
       setIsExisting(true);
       navigate(`/home/${clientId}/service/${serviceId}/profile`);
     } catch(err) {

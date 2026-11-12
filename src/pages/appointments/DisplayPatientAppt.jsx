@@ -21,9 +21,6 @@ const DisplayPatientAppt = (ptid) => {
 
   useEffect(() => {syncPatientAppts()}, []);
 
-  // console.log(`appts:`, id, appts, typeof appts);
-  // console.log(`error:`, error);
-
   if (Object.keys(appts).length >= 1) {
     return (
     <>

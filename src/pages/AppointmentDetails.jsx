@@ -1,9 +1,9 @@
 import { useParams } from "react-router";
-import { ApptDetails } from "./appointments/ApptPatient.jsx";
+import ApptDetails from "./appointments/ApptDetails.jsx";
 import DisplayPatientAppt from "./appointments/DisplayPatientAppt.jsx";
 
 const AppointmentDetails = () => {
-  const { clientId, patientId, apptId } = useParams();
+  const { patientId, apptId } = useParams();
 
   return (
     <>

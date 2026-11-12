@@ -61,15 +61,12 @@ const PatientFormInputs = () => {
             name="countryCode"
             maxLength="4"
             defaultValue="+1" />
-{/* will combine w/ phone as a string to accomodate server requirements */}
         </label> 
         <label><span>phoneNum</span>
-{/* backend uses phone: as key */}
           <input
             name="phoneNum"
             type="tel"
             maxLength="20"/>
-{/* convert to string. encourage country code using placeholder */}
         </label> 
         <label><span>birthYear</span>
           <input

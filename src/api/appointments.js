@@ -1,7 +1,7 @@
 import { BASE_URL } from "./index.js";
 
-export const getAvailability = async(patId, request, token) => {
-  const response = await fetch(BASE_URL + "/appointments/" + patId + "/appointment",{
+export const getAvailability = async(request, token) => {
+  const response = await fetch(BASE_URL + "/appointments/",{
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -23,7 +23,7 @@ export const getAvailability = async(patId, request, token) => {
 };
 
 export const scheduleAppt = async(patId, reqBody, token) => {
-  const response = await fetch(BASE_URL + "/appointments/" + patId + "/appointment/set", {
+  const response = await fetch(BASE_URL + "/appointments/patient/" + patId, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export const scheduleAppt = async(patId, reqBody, token) => {
 };
 
 export const getPatientAppts = async(patId, token) => {
-  const response = await fetch(BASE_URL + "/appointments/" + patId, {
+  const response = await fetch(BASE_URL + "/appointments/patients/" + patId, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -67,7 +67,7 @@ export const getPatientAppts = async(patId, token) => {
 
 export const getApptDetails = async(apptId, patId, token) => {
   console.log(`apptId:`, apptId, patId);
-  const response = await fetch(BASE_URL + "/appointments/" + patId + "/" + apptId, {
+  const response = await fetch(BASE_URL + "/appointments/patients/" + patId + "/appointment/" + apptId, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

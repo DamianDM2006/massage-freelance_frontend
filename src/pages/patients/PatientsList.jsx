@@ -1,6 +1,4 @@
-import { useState } from "react";
 import { NavLink, useParams } from "react-router";
-import { useAuth } from "../../authentications/AuthContext.jsx";
 
 import SetApptPatient from "../appointments/SetApptPatient.jsx";
 import DisplayPatientAppt from "../appointments/DisplayPatientAppt.jsx";
@@ -8,7 +6,6 @@ import DisplayPatientAppt from "../appointments/DisplayPatientAppt.jsx";
 const PatientsList = (ptData) => {
   const { patients } = ptData;
   const { clientId, serviceId } = useParams();
-  const [patient, setPatient] = useState({});
 
   const PatientsLi = () => {
     return patients.map((pt) => {

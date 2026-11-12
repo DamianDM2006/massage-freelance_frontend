@@ -4,7 +4,7 @@ import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getAvailability, scheduleAppt } from "../../api/appointments.js";
 
 const AppointmentRequest = () => {
-  const { clientId, serviceId, patientId } = useParams();
+  const { serviceId } = useParams();
   const [error, setError] = useState(null);
   const { token } = useAuth();
   const [isAvailable, setIsAvailable] = useState(false);
@@ -22,14 +22,13 @@ const AppointmentRequest = () => {
     if (request.startTime >= request.endTime) throw new Error('Invalid "Time" request. "Finished Time" must be after "Start Time".');
     
     try {
-      const result = await getAvailability(patientId, request, token);
+      const result = await getAvailability(request, token);
       setIsAvailable(result.available);
       if (result.available === false) {
         throw new Error(`The requested slot on ${result.requested.date} from ${result.requested.startTime} to ${result.requested.endTime} is not available.`)
       }
       let newResult = result;
       newResult.requested.serviceId = serviceId; 
-      // console.log(`newResult after:`, newResult);
       setRequested(newResult);
       setError(null);
     } catch(err) {
@@ -102,7 +101,6 @@ export const SetAppointment = (reqBody) => {
       const scheduled = await scheduleAppt(patientId, reqBody.requested, token);
       setAppoint(scheduled);
       navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`);
-      /*        /home/:clientId/service/:serviceId/patient/:patientId/appointments*/
     } catch (err) {
       console.log(err);
       setError(err);
