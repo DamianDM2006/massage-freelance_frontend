@@ -2,9 +2,12 @@ import { useState } from "react";
 import { useParams } from "react-router";
 import { usePath } from "../assets/PathContext";
 import PatientsList from "./patients/PatientsList.jsx";
+import { ApptDetails } from "./appointments/ApptPatient.jsx";
 import AppointmentRequest from "./appointments/AppointmentForms.jsx";
+import DisplayPatientAppt from "./appointments/DisplayPatientAppt.jsx";
 
 const AppointmentsPage = () => {
+  const { clientId, serviceId, patientId } = useParams();
   const { destination, isExisting } = usePath();
   
   // const { id } = useParams(); /* references service id */

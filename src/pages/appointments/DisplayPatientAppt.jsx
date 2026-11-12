@@ -5,7 +5,7 @@ import { ApptsList } from "./ApptPatient.jsx";
 
 const DisplayPatientAppt = (ptid) => {
   const {id} = ptid;
-  const [appts, setAppts] = useState({});
+  const [appts, setAppts] = useState([]);
   const [error, setError] = useState(null);
   const { token } = useAuth();
 

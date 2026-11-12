@@ -53,7 +53,6 @@ export const getPatientAppts = async(patId, token) => {
     }
   });
   const contentType = response.headers.get('content-type')
-  // console.log(`response:`, response);
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await  response.json();
@@ -64,4 +63,27 @@ export const getPatientAppts = async(patId, token) => {
     if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${textResult}`);
     return textResult;
   }
+};
+
+export const getApptDetails = async(apptId, patId, token) => {
+  console.log(`apptId:`, apptId, patId);
+  const response = await fetch(BASE_URL + "/appointments/" + patId + "/" + apptId, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: "Bearer " + token
+    }
+  });
+  const contentType = response.headers.get('content-type')
+
+  if (contentType && contentType.includes('application/json')) {
+    const jsonResult = await  response.json();
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${jsonResult.message}`);
+    return jsonResult;
+  } else {
+    const textResult = await response.text();
+    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${textResult}`);
+    return textResult;
+  }
+
 };
