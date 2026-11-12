@@ -20,12 +20,12 @@ export const ApptsList = (appointments) => {
     return <p>{appts}</p>
   } else {
     return (
-      <>
+      <section>
         <h4>Upcoming Appointments</h4>
         <ol>
           {appts.map((appt) => (<ListItem key={appt.appt_id} appt={appt} />))}
         </ol>
-      </>
+      </section>
     )
   }
 };

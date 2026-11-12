@@ -66,7 +66,6 @@ export const getPatientAppts = async(patId, token) => {
 };
 
 export const getApptDetails = async(apptId, patId, token) => {
-  console.log(`apptId:`, apptId, patId);
   const response = await fetch(BASE_URL + "/appointments/patients/" + patId + "/appointment/" + apptId, {
     method: "GET",
     headers: {

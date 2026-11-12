@@ -6,8 +6,23 @@ header {
     "menu title insert";
 }
 
+button {
+  margin: 7px;
+}
+
 .appt {
   display: grid;
+}
+
+.apptdtls {
+  border: solid;
+  padding: 1em;
+  margin: 7px;
+}
+
+.client {
+  border: solid;
+  padding: 1em;
 }
 
 .credsBtn {
@@ -32,6 +47,12 @@ header {
   margin: 1em 1em;
 }
 
+.disptappt {
+  border: solid;
+  padding: 1em;
+  margin: 7px;
+}
+
 .gender {
   max-width: 10em;
 }
@@ -51,6 +72,12 @@ header {
 .menu {
   display: grid;
   grid-area: menu;
+}
+
+.mngappts {
+  border: solid;
+  padding: 1em;
+  margin: 7px;
 }
 
 .month {
@@ -79,6 +106,12 @@ header {
 .patForm label input {
   background-color: rgb(244, 244, 205);
   max-width: 35em;
+}
+
+.ptli {
+  border: solid;
+  padding: 2em;
+  margin: 5px;
 }
 
 .title {

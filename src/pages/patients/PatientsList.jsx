@@ -10,7 +10,7 @@ const PatientsList = (ptData) => {
   const PatientsLi = () => {
     return patients.map((pt) => {
       return (
-        <li key={pt.id}>
+        <li className="ptli" key={pt.id}>
           <span>Goes by:<strong>{`  ${pt.nickname}`}</strong></span>
             <nav>
               <NavLink to={`/home/${clientId}/service/${serviceId}/patient/${pt.id}`}>
