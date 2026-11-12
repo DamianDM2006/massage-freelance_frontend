@@ -4,7 +4,7 @@ import { useNavigate, useParams, NavLink } from "react-router";
 
 const SetApptPatient = (id) => {
   const { destination } = usePath();
-  const { clientId, serviceId, patientId } = useParams();
+  const { clientId, serviceId } = useParams();
   const navigate = useNavigate();
   const [choseSvc, setChoseSvc] = useState(true);
 

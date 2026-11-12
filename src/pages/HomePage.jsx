@@ -11,13 +11,8 @@ const HomePage = () => {
   const [services, setServices] = useState([]);
   const [client, setClient] = useState({});
   const { token } = useAuth();
-  const { clientId, serviceId, patientId } = useParams();
-  const {
-    isExisting,
-    setIsExisting,
-    setDestination,
-    destination,
-  } = usePath();
+  const { clientId, patientId } = useParams();
+  const { setIsExisting, setDestination } = usePath();
 
   const syncServices = async() => {
     try {

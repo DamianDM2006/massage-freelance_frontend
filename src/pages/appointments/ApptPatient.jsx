@@ -1,14 +1,17 @@
+import { NavLink } from "react-router";
 
 export const ApptsList = (appointments) => {
   const { appts } = appointments;
-  console.log(`appts:`, appts, typeof appts);
 
   const ListItem = ({ appt }) => {
     const splitDate = appt.date.split("T")[0];
     const sliceStart = appt.start_time.slice(0, 5);
+    
     return (
       <nav>
-        <p>{`${splitDate} Beginning ${sliceStart}`}</p>
+        <NavLink to={`/home/${appt.client_id}/patient/${appt.patient_id}/appointments/${appt.appt_id}`}>
+          <p>{`${splitDate} Beginning ${sliceStart}`}</p>
+        </NavLink>
       </nav>
     )
   };
@@ -27,11 +30,3 @@ export const ApptsList = (appointments) => {
   }
 };
 
-export const ApptDetails = (ptid) => {
-  // console.log(`Details ptid:`, ptid)
-  return (
-    <p>
-      Patient {ptid.id} appointment DETAILS
-    </p>
-  )
-};

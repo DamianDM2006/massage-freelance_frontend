@@ -1,21 +1,13 @@
-import { useState } from "react";
-import { useParams } from "react-router";
-import { usePath } from "../assets/PathContext";
-import PatientsList from "./patients/PatientsList.jsx";
+// This page is used to Primarily to render Appointment Request.
+// How to bring in the Patient's name?
+
 import AppointmentRequest from "./appointments/AppointmentForms.jsx";
 
 const AppointmentsPage = () => {
-  const { destination, isExisting } = usePath();
   
-  // const { id } = useParams(); /* references service id */
-  // console.log(`location.pathname:`, location.pathname, `destination;`, destination);
-  // console.log(`Appointments Page. id:`, id);
-  // console.log(`isExisting:`, isExisting);
-
   return (
     <div className="Appts">
-      <h2>Appointments page: </h2>
-      {/* {isExisting && <PatientsList />} */}
+      <h2>Appointment Request for "patient's name??" </h2>
       <AppointmentRequest />
     </div>
   )

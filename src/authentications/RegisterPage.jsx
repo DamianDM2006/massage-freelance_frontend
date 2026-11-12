@@ -8,7 +8,7 @@ const RegisterPage = () => {
   const { register } = useAuth();
   const navigate = useNavigate();
   const { destination } = usePath();
-  const { clientId, serviceId, patientId } = useParams();
+  const { clientId } = useParams();
 
   const tryRegister = async(formData) => {
     const userName = formData.get("userName");

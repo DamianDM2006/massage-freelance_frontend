@@ -65,7 +65,6 @@ export const createPatient = async(formData, token) => {
 };
 
 export const getPatientAddress = async(id, token) => {
-  // console.log(`WONDERING IF I EVEN MADE IT TO HERE.`, id);
   const response = await fetch(BASE_URL + "/addresses/" + id, {
     method: "GET",
     headers: {
@@ -78,12 +77,10 @@ export const getPatientAddress = async(id, token) => {
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();
     if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${jsonResult.message}`);
-    // console.log(`jsonresult:`,jsonResult);
     return jsonResult;
   } else {
     const textResult = await response.text();
     if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${textResult}`);
-    // console.log(`textResult:`, textResult);
     return textResult;
   };
 };

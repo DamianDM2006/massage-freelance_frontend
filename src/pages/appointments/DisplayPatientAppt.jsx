@@ -5,7 +5,7 @@ import { ApptsList } from "./ApptPatient.jsx";
 
 const DisplayPatientAppt = (ptid) => {
   const {id} = ptid;
-  const [appts, setAppts] = useState({});
+  const [appts, setAppts] = useState([]);
   const [error, setError] = useState(null);
   const { token } = useAuth();
 
@@ -20,9 +20,6 @@ const DisplayPatientAppt = (ptid) => {
   };
 
   useEffect(() => {syncPatientAppts()}, []);
-
-  // console.log(`appts:`, id, appts, typeof appts);
-  // console.log(`error:`, error);
 
   if (Object.keys(appts).length >= 1) {
     return (

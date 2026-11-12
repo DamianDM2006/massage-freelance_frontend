@@ -10,6 +10,7 @@ import CreatePatient from "./pages/patients/CreatePatient.jsx";
 import PatientDetails from "./pages/patients/PatientDetails.jsx";
 import AddressForm from "./pages/addresses/AddressForm.jsx";
 import AppointmentsPage from "./pages/AppointmentsPage.jsx";
+import AppointmentDetails from "./pages/AppointmentDetails.jsx";
 import Error404 from "./Error404.jsx";
 
 const App = () => {
@@ -25,7 +26,7 @@ const App = () => {
         <Route path="/home/:clientId/service/:serviceId/patient/:patientId" element={<PatientDetails />} />
         <Route path="/home/:clientId/service/:serviceId/patient/:patientId/createAddress" element={<AddressForm />} />
         <Route path="/home/:clientId/service/:serviceId/patient/:patientId/appointments" element={<AppointmentsPage />} />
-          {/* <Route path="/home/:clientId/patient/:patientId/appointments/:apptId" element={<ManageAppt />} /> */}
+        <Route path="/home/:clientId/patient/:patientId/appointments/:apptId" element={<AppointmentDetails />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/service/:serviceId" element={<ServiceDetailsPage />} />

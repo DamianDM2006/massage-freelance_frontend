@@ -9,13 +9,13 @@ import ClientDetails from "./patients/ClientDetails.jsx";
 import PatientsList from "./patients/PatientsList.jsx";
 
 const ProfilePage = () => {
-  const { destination, isExisting, setIsExisting } = usePath();
+  const { isExisting, setIsExisting } = usePath();
   const { token } = useAuth();
   const [client, setClient] = useState({});
   const [patients, setPatients] = useState([]);
   const [error, setError] = useState();
   const navigate = useNavigate();
-  const { clientId, serviceId, patientId} = useParams();
+  const { serviceId } = useParams();
 
   if (!token) throw new Error(`Unathorized Attempt`);
 
