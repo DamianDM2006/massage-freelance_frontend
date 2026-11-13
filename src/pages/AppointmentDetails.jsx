@@ -11,7 +11,7 @@ const AppointmentDetails = () => {
       <h4>AppointmentDetails Page</h4>
       <DisplayPatientAppt id={patientId}/>
       <ApptDetails id={apptId} pd={patientId} />
-      <ManageAppointments id={apptId} />
+      <ManageAppointments />
     </>
   )
 };

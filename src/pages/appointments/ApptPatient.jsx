@@ -1,7 +1,8 @@
-import { NavLink } from "react-router";
+import { NavLink,useParams } from "react-router";
 
 export const ApptsList = (appointments) => {
-  const { appts } = appointments;
+  const { appts, ptid } = appointments;
+  const { clientId, serviceId } = useParams();
 
   const ListItem = ({ appt }) => {
     const splitDate = appt.date.split("T")[0];
@@ -17,7 +18,11 @@ export const ApptsList = (appointments) => {
   };
 
   if (typeof appts !== "object") {
-    return <p>{appts}</p>
+    return (
+      <NavLink to={`/home/${clientId}/service/${serviceId}/patient/${ptid.id}/appointments/0`}>
+        <p>{appts}</p>
+      </NavLink>
+    )
   } else {
     return (
       <section>

@@ -81,7 +81,7 @@ export const getApptDetails = async(apptId, patId, token) => {
     return jsonResult;
   } else {
     const textResult = await response.text();
-    if (!response.ok) throw new Error(`status ${response.status}: ${response.statusText}!! ${textResult}`);
+    if (!response.ok) throw new Error(`${textResult}`);
     return textResult;
   }
 

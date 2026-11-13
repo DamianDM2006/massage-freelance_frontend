@@ -29,8 +29,9 @@ const SetApptPatient = (id) => {
 
   return (
     <nav>
-      <button onClick={() => requestAppt()}>
-        SetApptPatient
+      <button className="credsThin"
+        onClick={() => requestAppt()}>
+        Schedule an appointment.
       </button>
       {!choseSvc && <NoSvcChosen />}
     </nav>

@@ -14,9 +14,19 @@ button {
   color:crimson;
 }
 
+.alertbttn {
+  color:crimson;
+  background-color:hsl(60, 96%, 71%); /*beige-ish*/
+  border-color:crimson;
+  margin: 1em;
+  max-width: 30em;
+  min-width: 20em;
+  min-height: 3em;
+}
+
 #alert {
   color:crimson;
-  background-color:rgb(231, 248, 210);
+  background-color:rgb(246, 246, 124); /*beige-ish*/
   border-color:crimson;
   margin: 1em;
   max-width: 30em;
@@ -51,6 +61,10 @@ button {
   max-width: 30em;
   min-width: 20em;
   min-height: 3em;
+}
+
+.credsThin {
+  min-width: 20em;
 }
 
 .credsForm {

@@ -24,7 +24,7 @@ const DisplayPatientAppt = (ptid) => {
   if (Object.keys(appts).length >= 1) {
     return (
     <section className="disptappt">
-      <ApptsList appts={appts} />
+      <ApptsList appts={appts} ptid={ptid}/>
     </section>
   )} else return
 };
