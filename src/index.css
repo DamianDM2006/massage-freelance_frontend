@@ -10,6 +10,20 @@ button {
   margin: 7px;
 }
 
+.alert {
+  color:crimson;
+}
+
+#alert {
+  color:crimson;
+  background-color:rgb(231, 248, 210);
+  border-color:crimson;
+  margin: 1em;
+  max-width: 30em;
+  min-width: 20em;
+  min-height: 3em;
+}
+
 .appt {
   display: grid;
 }

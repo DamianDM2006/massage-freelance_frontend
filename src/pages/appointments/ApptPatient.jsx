@@ -9,7 +9,7 @@ export const ApptsList = (appointments) => {
     
     return (
       <nav>
-        <NavLink to={`/home/${appt.client_id}/patient/${appt.patient_id}/appointments/${appt.appt_id}`}>
+        <NavLink to={`/home/${appt.client_id}/service/${appt.service_id}/patient/${appt.patient_id}/appointments/${appt.appt_id}`}>
           <p>{`${splitDate} Beginning ${sliceStart}`}</p>
         </NavLink>
       </nav>
