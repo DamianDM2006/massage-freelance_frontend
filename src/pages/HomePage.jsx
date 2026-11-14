@@ -62,14 +62,18 @@ const HomePage = () => {
   };
 
   const syncClient = async() => {
-    try {
-      const clientData = await getClientData(token);
-      if (clientData.patient_id !== null) setIsExisting(true);
-      setClient(clientData);
-      navigate("/home/" + clientData.id);
-    } catch(err) {
-      console.log(`ERROR:`, err);
-    }
+    if (!token) {
+      return
+    } else {
+      try {
+        const clientData = await getClientData(token);
+        if (clientData.patient_id !== null) setIsExisting(true);
+        setClient(clientData);
+        navigate("/home/" + clientData.id);
+      } catch(err) {
+        console.log(`ERROR:`, err);
+      }
+    };
   };
 
   useEffect(() => {syncClient()}, []);
@@ -85,7 +89,6 @@ const HomePage = () => {
 
   /**
    * <ServicesList >
-   *  will include title: and description 
    *  will eventually include
    *    cost:
    *    duration:
@@ -94,7 +97,7 @@ const HomePage = () => {
   return (
     <div className="home">
       <div className="welcome">
-        <h2>Welcome{client.id ? `.  Your are signed in as: ${client.user_name}.` : ` to our Home Page.`}</h2>
+        <h2>Welcome{client.id ? `.  Your are signed in under: ${client.user_name}.` : ` to our Home Page.`}</h2>
         <p>
           This is the part where we tell you a little bit about ourselves. We hope you are impressed.
         </p>

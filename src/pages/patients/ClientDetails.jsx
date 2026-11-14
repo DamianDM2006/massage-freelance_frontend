@@ -7,7 +7,7 @@ const ClientDetails = (clientData) => {
     return (
       <>
         <p>
-          Signed in as:
+          Signed in under user name:
           <strong>
             {`  ${client.user_name}`}
           </strong>

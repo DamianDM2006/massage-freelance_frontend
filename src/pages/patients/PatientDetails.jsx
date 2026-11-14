@@ -13,7 +13,7 @@ const PatientDetails = () => {
   const [patient, setPatient] = useState({});
   const [error, setError] = useState(null);
   const navigate = useNavigate();
-  const { destination, setDestination } = usePath();
+  const { patientName, setPatientName } = usePath();
   const { clientId, serviceId, patientId} = useParams();
 
   const syncPatient = async() => {

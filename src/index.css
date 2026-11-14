@@ -34,8 +34,20 @@ button {
   min-height: 3em;
 }
 
-.appt {
+.apptForm {
   display: grid;
+}
+
+.apptForm label {
+  display: grid;
+  grid-template-columns: 7em 1fr;
+  text-align: right;
+  margin: 3px;
+}
+
+.apptForm input {
+  margin-left: 5px;
+  max-width: 11em;
 }
 
 .apptdtls {
@@ -140,6 +152,10 @@ button {
   border: solid;
   padding: 2em;
   margin: 5px;
+}
+
+.success {
+  color:green;
 }
 
 .title {

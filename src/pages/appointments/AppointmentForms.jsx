@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
+import { usePath } from "../../assets/PathContext.jsx";
 import { getAvailability, scheduleAppt } from "../../api/appointments.js";
 
 const AppointmentRequest = () => {
@@ -9,10 +10,12 @@ const AppointmentRequest = () => {
   const { token } = useAuth();
   const [isAvailable, setIsAvailable] = useState(false);
   const [requested, setRequested] = useState({});
+  
 
   const checkAvailability = async(formData) => {
     const request = Object.fromEntries(formData.entries());
     const today = Temporal.Now.plainDateISO().toString();
+    try {
     
     if (request.date.length !== 10) throw new Error(`Invalid "Date" syntax. Must be in the form "YYYY-MM-DD".`);
     if (request.date < today) throw new Error(`Invalid "Date" request. The requested date must be in the future.`);
@@ -21,7 +24,6 @@ const AppointmentRequest = () => {
     };
     if (request.startTime >= request.endTime) throw new Error('Invalid "Time" request. "Finished Time" must be after "Start Time".');
     
-    try {
       const result = await getAvailability(request, token);
       setIsAvailable(result.available);
       if (result.available === false) {
@@ -43,8 +45,11 @@ const AppointmentRequest = () => {
   const HandleError = () => {
     return (
       <>
-        <p>{error.message}</p>
-        <button onClick={() => ResetError()}>Reset Request Form</button>
+        <h4 className="alert">{error.message}</h4>
+        <button className="credsThin"
+          onClick={() => ResetError()}>
+            Reset Form
+        </button>
       </>
     )
   };
@@ -55,18 +60,19 @@ const AppointmentRequest = () => {
         <p>When would you prefer to make this appointment for?</p>
         <form
           action={checkAvailability}
-          className="appt">
-          <label>Date
+          className="apptForm">
+          <label>Date:
             <input
               name="date"
-              type="date"/>
+              type="date"
+              autoFocus/>
           </label>
-          <label>Start Time
+          <label>Start Time:
             <input
               name="startTime"
               type="time"/>
           </label>
-          <label>Finished Time
+          <label>Finished Time:
             <input
               name="endTime"
               type="time"/>
@@ -94,13 +100,15 @@ export const SetAppointment = (reqBody) => {
   const [error, setError] = useState(null);
   const [appoint, setAppoint] = useState({});
   const navigate = useNavigate();
+  const { setDestination } = usePath();
 
   const trySchedule = async() => {
 
     try {
       const scheduled = await scheduleAppt(patientId, reqBody.requested, token);
       setAppoint(scheduled);
-      navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`);
+      setDestination(`/home/${clientId}`);
+      navigate(`/home/${clientId}/service/undefined/patient/${patientId}`);
     } catch (err) {
       console.log(err);
       setError(err);
@@ -109,13 +117,13 @@ export const SetAppointment = (reqBody) => {
 
   return (
     <>
-      <div>
-        <h3>Confirmed Availability for </h3>
+      <div className="success">
+        <h3>Confirmed Availability for: </h3>
         <p>{`Date & Time: ${reqBody.requested.date} From: ${reqBody.requested.startTime} To: ${reqBody.requested.endTime}`}</p>
       </div>
       <form action={trySchedule}>
-        <button>
-          Sets Appointment After Check Availability
+        <button className="credsSmBtn">
+          Set Appointment
         </button>
       </form>
       {error && <p>{error.message}</p>}

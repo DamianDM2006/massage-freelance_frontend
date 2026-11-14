@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "../../authentications/AuthContext.jsx";
+import { usePath } from "../../assets/PathContext.jsx";
 import { getPatient } from "../../api/patients.js";
 
 const DisplayClient = (pId) => {
   const { token } = useAuth();
   const [patient, setPatient] = useState({});
+  const { setPatientName } = usePath();
   const [error, setError] = useState(null);
   const { id } = pId;
 
@@ -12,6 +14,7 @@ const DisplayClient = (pId) => {
     try{
       const patientData = await getPatient(id, token);
       setPatient(patientData);
+      setPatientName(patientData.nickname);
     } catch(err) {
       console.log(err);
       setError(err);

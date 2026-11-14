@@ -5,10 +5,15 @@ const PathContext = createContext();
 export const PathProvider = ({ children }) => {
   const [destination, setDestination] = useState(null);
   const [isExisting, setIsExisting] = useState(false);
+  const [patientName, setPatientName] = useState();
+
+
 
   const value = {
     destination,
     setDestination,
+    patientName,
+    setPatientName,
     isExisting,
     setIsExisting
   };

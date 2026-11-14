@@ -15,7 +15,6 @@ const ManageAppointments = () => {
   const tryDeleteAppointment = async() => {
     try {
       const confirmation = await deleteAppt(patientId, apptId, token);
-      console.log(`confirmation:`, confirmation);
       setConfirmed(confirmation);
       if (reschedule === true) setReschedule(false);
       if (reqDelete === true) setReqDelete(false);
@@ -122,18 +121,21 @@ const ManageAppointments = () => {
 
   const HandleConfirmed = () => {
     if (confirmed.length >= 1) {
+      // setReqDelete(false);
+      // setConfirmed("");
       return (
         <>
           <h2>{confirmed}</h2>
           <button
             className="alertbttn"
-            onClick={() => cancelRequest()}>
+            onClick={() => {navigate(`/home/${clientId}/service/undefined/patient/${patientId}`);}}>
               OK.
           </button>
         </>
       )
     };
   };
+  ///home/:clientId/service/:serviceId/patient/:patientId
 
   const HandleError = () => {
     if (error) {
@@ -149,7 +151,6 @@ const ManageAppointments = () => {
       )
     }
   };
-  ///home/:clientId/service/:serviceId/patient/:patientId
   return (
     <div className="mngappts">
       <WhichButton />
@@ -157,7 +158,7 @@ const ManageAppointments = () => {
       <HandleError />
       <div className="renav">
         <button className="credsSmBtn"
-          onClick={() => navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`)}>
+          onClick={() => navigate(`/home/${clientId}/service/undefined/patient/${patientId}`)}>
           Patient details.
         </button>
         <button className="credsSmBtn"
