@@ -61,10 +61,11 @@ const ManageAppointments = () => {
   };
 
   const WhichButton = () => {
-    if (apptId >= 1) {
+    if (apptId >= 1 && confirmed.length < 1) {
+      console.log(`confirmed length:`, confirmed.length);
       if ( reqDelete === false && reschedule === false) {
         return (
-          <>
+          <div className="whchbttn">
             <form action={requestDelete}>
               <button className="credsSmBtn">
                 Cancel Appointment.
@@ -75,7 +76,7 @@ const ManageAppointments = () => {
                 Reschedule appointment.
               </button>
             </form>      
-          </>
+          </div >
         )
       };
       
@@ -124,18 +125,17 @@ const ManageAppointments = () => {
       // setReqDelete(false);
       // setConfirmed("");
       return (
-        <>
+        <div className="hndlcnfrm">
           <h2>{confirmed}</h2>
           <button
             className="alertbttn"
             onClick={() => {navigate(`/home/${clientId}/service/undefined/patient/${patientId}`);}}>
               OK.
           </button>
-        </>
+        </div>
       )
     };
   };
-  ///home/:clientId/service/:serviceId/patient/:patientId
 
   const HandleError = () => {
     if (error) {

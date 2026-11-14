@@ -96,7 +96,6 @@ export const deleteAppt = async(patId, apptId, token) => {
     }
   });
   const contentType = response.headers.get('content-type');
-  console.log(`response:`, response);
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();

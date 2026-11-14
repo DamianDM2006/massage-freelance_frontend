@@ -18,6 +18,7 @@ const SetApptPatient = (id) => {
   };
 
   const NoSvcChosen = () => {
+    
     return (
       <nav>
         <NavLink to={`/home/${clientId}`}>

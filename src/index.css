@@ -97,6 +97,11 @@ button {
   max-width: 10em;
 }
 
+.hndlcnfrm {
+  border: solid;
+  margin: 3px;
+}
+
 .insert {
   grid-area: insert;
 }
@@ -154,12 +159,22 @@ button {
   margin: 5px;
 }
 
+.renav {
+  border: solid;
+  margin: 3px;
+}
+
 .success {
   color:green;
 }
 
 .title {
   grid-area: title;
+}
+
+.whchbttn {
+  border: solid;
+  margin: 3px;
 }
 
 .withh2 {
