@@ -12,7 +12,9 @@ const HomePage = () => {
   const [client, setClient] = useState({});
   const { token } = useAuth();
   const { clientId, patientId } = useParams();
-  const { setIsExisting, setDestination } = usePath();
+  const { setIsExisting, destination, setDestination } = usePath();
+
+  console.log(`destination:`, destination);
 
   const syncServices = async() => {
     try {
@@ -79,6 +81,9 @@ const HomePage = () => {
   useEffect(() => {syncClient()}, []);
 
   const goToWhere = (whichSvc) => {
+    // HERE needs to check if current destination has more parameters than the purposed change.
+    // Specifically looking for a defined value for patientId.  
+    // I want to avoid going back and forth from the profile page.  I want the user experience to be more seamless.
     setDestination(`/home/${clientId}/service/${whichSvc}/patient/${patientId}/appointments`);
     if (!token) {
       navigate("/login");
@@ -93,6 +98,7 @@ const HomePage = () => {
    *    cost:
    *    duration:
    */
+  
 
   return (
     <div className="home">

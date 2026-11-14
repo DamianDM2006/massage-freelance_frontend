@@ -15,8 +15,8 @@ const AppointmentRequest = () => {
   const checkAvailability = async(formData) => {
     const request = Object.fromEntries(formData.entries());
     const today = Temporal.Now.plainDateISO().toString();
-    try {
     
+    try {
     if (request.date.length !== 10) throw new Error(`Invalid "Date" syntax. Must be in the form "YYYY-MM-DD".`);
     if (request.date < today) throw new Error(`Invalid "Date" request. The requested date must be in the future.`);
     if (request.startTime.length !== 5 || request.endTime.length !== 5) {
@@ -27,7 +27,7 @@ const AppointmentRequest = () => {
       const result = await getAvailability(request, token);
       setIsAvailable(result.available);
       if (result.available === false) {
-        throw new Error(`The requested slot on ${result.requested.date} from ${result.requested.startTime} to ${result.requested.endTime} is not available.`)
+        throw new Error(`Your requested appointment on ${result.requested.date} from ${result.requested.startTime} to ${result.requested.endTime} is not available.`)
       }
       let newResult = result;
       newResult.requested.serviceId = serviceId; 
@@ -107,7 +107,7 @@ export const SetAppointment = (reqBody) => {
     try {
       const scheduled = await scheduleAppt(patientId, reqBody.requested, token);
       setAppoint(scheduled);
-      setDestination(`/home/${clientId}`);
+      setDestination(`/home/${clientId}/service/undefined/patient/${patientId}`);
       navigate(`/home/${clientId}/service/undefined/patient/${patientId}`);
     } catch (err) {
       console.log(err);
@@ -118,8 +118,8 @@ export const SetAppointment = (reqBody) => {
   return (
     <>
       <div className="success">
-        <h3>Confirmed Availability for: </h3>
-        <p>{`Date & Time: ${reqBody.requested.date} From: ${reqBody.requested.startTime} To: ${reqBody.requested.endTime}`}</p>
+        <h3>Your requested appointment time is availabe. </h3>
+        <p>{`On ${reqBody.requested.date} From: ${reqBody.requested.startTime} To: ${reqBody.requested.endTime}`}</p>
       </div>
       <form action={trySchedule}>
         <button className="credsSmBtn">
@@ -128,5 +128,5 @@ export const SetAppointment = (reqBody) => {
       </form>
       {error && <p>{error.message}</p>}
     </>
-  )
+  );
 };
