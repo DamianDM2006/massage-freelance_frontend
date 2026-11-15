@@ -9,8 +9,7 @@ const AppointmentRequest = () => {
   const [error, setError] = useState(null);
   const { token } = useAuth();
   const [isAvailable, setIsAvailable] = useState(false);
-  const [requested, setRequested] = useState({});
-  
+  const [requested, setRequested] = useState({});  
 
   const checkAvailability = async(formData) => {
     const request = Object.fromEntries(formData.entries());
@@ -107,7 +106,7 @@ export const SetAppointment = (reqBody) => {
     try {
       const scheduled = await scheduleAppt(patientId, reqBody.requested, token);
       setAppoint(scheduled);
-      setDestination(`/home/${clientId}/service/undefined/patient/${patientId}`);
+      setDestination(null);
       navigate(`/home/${clientId}/service/undefined/patient/${patientId}`);
     } catch (err) {
       console.log(err);
@@ -118,7 +117,7 @@ export const SetAppointment = (reqBody) => {
   return (
     <>
       <div className="success">
-        <h3>Your requested appointment time is availabe. </h3>
+        <h3>Your requested appointment time is AVAILABLE. </h3>
         <p>{`On ${reqBody.requested.date} From: ${reqBody.requested.startTime} To: ${reqBody.requested.endTime}`}</p>
       </div>
       <form action={trySchedule}>
