@@ -5,10 +5,10 @@ import { usePath } from "../assets/PathContext.jsx";
 import { getServiceDetails } from "../api/services.js";
 
 const ServiceDetailsPage = () => {
-  const { serviceId, clientId, patientId } = useParams();
+  const { clientId, serviceId, patientId } = useParams();
   const [service, setService] = useState({});
   const { token } = useAuth();
-  const { setDestination } = usePath();
+  const { destination, setDestination } = usePath();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,11 +20,27 @@ const ServiceDetailsPage = () => {
   }, [serviceId]);
 
   const goToWhere = () => {
-    setDestination(`/home/${clientId}/service/${serviceId}/patient/${patientId}/appointments`);
+    if (!destination) {
+        setDestination(`/home/${clientId}/service/${serviceId}/patient/${patientId}/appointments`);
+        navigate(`/home/${clientId}/service/${serviceId}/profile`);
+    };
     if (!token) {
       navigate("/login");
-    } else {
-      navigate(`/home/${clientId}/service/${serviceId}/profile`);
+    };
+    if (destination) {
+      const patid = destination.split("/")[6];
+      const svcid = destination.split("/")[4];
+      if (svcid === serviceId && patid === "undefined") {
+        //(`NO PATIENT, but service id's match. I can navigate to profile page.`);
+        navigate(`/home/${clientId}/service/${service.id}/profile`);
+      };
+      if (svcid === serviceId && patid !== "undefined") {
+        navigate(destination);
+      };
+      if (svcid === "undefined" && patid !== "undefined") {
+        setDestination(`/home/${clientId}/service/${service.id}/patient/${patid}/appointments`)
+        navigate(`/home/${clientId}/service/${service.id}/patient/${patid}/appointments`);
+      }
     };
   };
 
