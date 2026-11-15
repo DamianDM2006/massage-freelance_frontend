@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { usePath } from "../../assets/PathContext.jsx";
 import { useNavigate, useParams, NavLink } from "react-router";
 
@@ -6,29 +5,36 @@ const SetApptPatient = (id) => {
   const { destination, setDestination } = usePath();
   const { clientId, serviceId, patientId } = useParams();
   const navigate = useNavigate();
-  const [choseSvc, setChoseSvc] = useState(true);
 
-  console.log(`destineation:`, destination);
+  const goToHome = () => {
+    setDestination(`/home/${clientId}/service/${serviceId}/patient/${id.id}/appointments`);
+    navigate(`/home/${clientId}`);
+  };
 
-  const requestAppt = () => {
-    console.log(`destination.split:`, destination?.split("/")[4])
-
-    setDestination(`/home/${clientId}/service/undefined/patient/${id.id}`);
-    
-    if (destination && destination.split("/")[4]) {
-      setChoseSvc(true);
-      navigate(`/home/${clientId}/service/${serviceId}/patient/${id.id}/appointments`);
+  const RequestAppt = () => {
+    if (destination && destination.split("/")[4] !== "undefined") {
+      return (
+        <>
+          <button className="credsThin"
+            onClick={() => navigate(`/home/${clientId}/service/${serviceId}/patient/${id.id}/appointments`)}>
+            Schedule the appointment for this patient.
+          </button>
+        </>
+      )
     } else {
-      setChoseSvc(false);
+      return (
+        <>
+          <button className="credsThin"
+            onClick={() => goToHome()}>
+            Choose a service to schedule an appointment.
+          </button>
+        </>
+      )
     }
   };
 
   const NoSvcChosen = () => {
     console.log(`destination:`, destination);
-      // setDestination(`/home/${clientId}/service/${serviceId}/patient/${id.id}/appointments`);
-  // HERE!!!  needs to reset the destination to incorporate clientId AND patientId 
-  // in HOME page to where function: if destination has clientId, serviceId, & patiendId then DO NOT go back to patient details.
-    // instead.... navigate to appointment forms from the HOME page. 
     return (
       <nav>
         <NavLink to={`/home/${clientId}`}>
@@ -38,15 +44,9 @@ const SetApptPatient = (id) => {
     )
   };
 
-  // console.log(`destination & id:`, destination, id.id);
-
   return (
     <nav>
-      <button className="credsThin"
-        onClick={() => requestAppt()}>
-        Schedule an appointment.
-      </button>
-      {!choseSvc && <NoSvcChosen />}
+      <RequestAppt />
     </nav>
   )
 };

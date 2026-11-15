@@ -10,11 +10,10 @@ const HomePage = () => {
   const navigate = useNavigate();
   const [services, setServices] = useState([]);
   const [client, setClient] = useState({});
-  const { token } = useAuth();
+  const [service, setService] = useState({});
   const { clientId, patientId } = useParams();
+  const { token } = useAuth();
   const { setIsExisting, destination, setDestination } = usePath();
-
-  console.log(`destination:`, destination);
 
   const syncServices = async() => {
     try {
@@ -41,21 +40,21 @@ const HomePage = () => {
             <p className="margNoTB"><small>Select the title to learn more</small></p>
           </span>
           <ul className="servList">
-            {services.map((service) => (<ServiceLI key={service.id} service={service} />))}
+            {services.map((service) => (<ServiceLI key={service.id} svc={service} />))}
           </ul>
         </>
       )
   };
 
-  const ServiceLI = ({ service }) => {
+  const ServiceLI = ({ svc }) => {
     return (
       <li>
         <nav>
-          <NavLink to={clientId ? "/home/" + clientId + "/service/" + service.id : "/service/" + service.id}>
-            <h4>{service.title}</h4>
+          <NavLink to={clientId ? "/home/" + clientId + "/service/" + svc.id : "/service/" + svc.id}>
+            <h4>{svc.title}</h4>
           </NavLink>
         </nav>
-          <button onClick={() => goToWhere(service.id)}>
+          <button onClick={() => goToWhere(svc)}>
             <strong>Schedule Appointment</strong>
             <small>for this service</small>
           </button>
@@ -80,17 +79,39 @@ const HomePage = () => {
 
   useEffect(() => {syncClient()}, []);
 
-  const goToWhere = (whichSvc) => {
-    // HERE needs to check if current destination has more parameters than the purposed change.
-    // Specifically looking for a defined value for patientId.  
-    // I want to avoid going back and forth from the profile page.  I want the user experience to be more seamless.
-    setDestination(`/home/${clientId}/service/${whichSvc}/patient/${patientId}/appointments`);
+  const goToWhere = (svc) => {
+    setService(svc);
+    if (service && service.id && !destination) {
+      setDestination(`/home/${clientId}/service/${service.id}/patient/${patientId}/appointments`);
+      navigate(`/home/${clientId}/service/${service.id}/profile`);
+    };
     if (!token) {
-      navigate("/login");
-    } else {
-      navigate(`/home/${clientId}/service/${whichSvc}/profile`);
+          navigate("/login");
+    };
+    if (service && service.id && destination) {
+      console.log(`service & destination`);
+      const patid = destination.split("/")[6];
+      const svcid = destination.split("/")[4];
+      if (Number(svcid) === service.id && patid === "undefined") {
+        //(`EDGE CASE: NO PATIENT, but service id's match. I can navigate to profile page.`);
+        navigate(`/home/${clientId}/service/${service.id}/profile`);
+      };
+      if (Number(svcid) !== service.id && patid === "undefined") {
+        //("EDGE CASE: changing service type.")
+        setDestination(`/home/${clientId}/service/${service.id}/patient/${patientId}/appointments`);
+        navigate(`/home/${clientId}/service/${service.id}/profile`);
+      };
+      if (Number(svcid) === service.id && patid !== "undefined") {
+        navigate(destination);
+      };
+      if (svcid === "undefined" && patid !== "undefined") {
+        setDestination(`/home/${clientId}/service/${service.id}/patient/${patid}/appointments`)
+        navigate(`/home/${clientId}/service/${service.id}/patient/${patid}/appointments`);
+      };
     };
   };
+
+  useEffect(() => {goToWhere()}, [service, destination]);
 
   /**
    * <ServicesList >
@@ -98,7 +119,6 @@ const HomePage = () => {
    *    cost:
    *    duration:
    */
-  
 
   return (
     <div className="home">
