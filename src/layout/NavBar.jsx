@@ -22,9 +22,11 @@ const NavBar = () => {
       )
     } else {
       return (
-        <NavLink to="/home" >
-          Home
-        </NavLink>
+        <form action={excecute}>
+          <button type="submit" >
+            HOME
+          </button>
+        </form>
       )
     }
   };

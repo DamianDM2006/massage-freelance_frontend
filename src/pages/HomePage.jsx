@@ -85,7 +85,7 @@ const HomePage = () => {
       setDestination(`/home/${clientId}/service/${service.id}/patient/${patientId}/appointments`);
       navigate(`/home/${clientId}/service/${service.id}/profile`);
     };
-    if (!token) {
+    if (!token && destination) {
           navigate("/login");
     };
     if (service && service.id && destination) {
