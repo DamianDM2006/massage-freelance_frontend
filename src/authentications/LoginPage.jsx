@@ -47,13 +47,13 @@ const LoginPage = () => {
             placeholder="6 character minimum"
           />
         </label>
-        <button className="credsBtn">
-          Login
-        </button>
-        {error && <p>{`Ooops!  ${error.message}`}</p>}
+          <button className="credsBtn">
+            Login
+          </button>
+          {error && <p>{`Ooops!  ${error.message}`}</p>}
       </form>
       <nav>
-        <p>If you do not have an account, Please select the link to create one.</p>
+        <p>If you do not have an account, Please select the link below to create one.</p>
         <Link to={"/register"}>
           <h4>Register</h4>
         </Link>

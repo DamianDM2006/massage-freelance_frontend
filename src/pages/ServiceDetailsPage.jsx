@@ -48,6 +48,7 @@ const ServiceDetailsPage = () => {
     <div className="serveDetails">
       <h2>{service.title}</h2>
       <p><strong>{service.description}</strong></p>
+        <div className="credsForm">
           <button
             className="credsBtn"
             onClick={() => {goToWhere()}}>
@@ -58,6 +59,7 @@ const ServiceDetailsPage = () => {
             onClick={() => navigate(-1)}>
             "back"
           </button>
+        </div>
     </div>
   )
 };
