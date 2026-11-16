@@ -22,16 +22,15 @@ const NavBar = () => {
       )
     } else {
       return (
-        <form action={excecute}>
-          <button type="submit" >
+          <button type="submit"
+            onClick={() => execute()}>
             HOME
           </button>
-        </form>
       )
     }
   };
 
-  const excecute = () => {
+  const execute = () => {
     logout();
     setDestination(null);
     navigate("/home");
@@ -41,7 +40,7 @@ const NavBar = () => {
   const LogLink = () => {
     if(token !== null) {
       return (
-        <form action={excecute}>
+        <form action={execute}>
           <button type="submit" >Logout</button>
         </form>
     )

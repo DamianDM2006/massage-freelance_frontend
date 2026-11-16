@@ -1,13 +1,29 @@
+body {
+  background-color:rgb(233, 233, 206);
+  margin: 0 8px 8px 8px;;
+  justify-items: center;
+}
+
+button {
+  margin: 7px;
+}
+
 header {
   background-color: rgb(244, 244, 205); /*beige-ish*/
   display: grid;
   grid-template-areas:
     "language title insert"
     "menu title insert";
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding-top: 8px;
+  border-top: 8px solid rgb(233, 233, 206);
+  border-bottom: 8px solid rgb(233, 233, 206);
 }
 
-button {
-  margin: 7px;
+h2 {
+  text-align: center;
 }
 
 .alert {
@@ -66,6 +82,7 @@ button {
   max-width: 30em;
   min-width: 20em;
   min-height: 5em;
+  
 }
 
 .credsSmBtn {
@@ -102,12 +119,30 @@ button {
   margin: 3px;
 }
 
+.home {
+  padding: 1em;
+}
+
 .insert {
   grid-area: insert;
+  margin: 3px;
+  justify-items: right;
 }
 
 .language {
   grid-area: language;
+  margin-left: 13px
+}
+
+.login nav {
+  margin: 1em;
+  justify-items: center;
+}
+
+.login nav a h4 {
+  margin: 1em;
+  padding: 1em;
+  text-align: center;
 }
 
 .margNoTB {
@@ -117,6 +152,11 @@ button {
 .menu {
   display: grid;
   grid-area: menu;
+  margin: 13px;
+}
+
+.menu a {
+  margin-left: 13px
 }
 
 .mngappts {
@@ -162,6 +202,10 @@ button {
 .renav {
   border: solid;
   margin: 3px;
+}
+
+.serveDetails {
+  padding: 13px;
 }
 
 .success {
