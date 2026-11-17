@@ -4,6 +4,7 @@
  * sets context for display type (??)
  */
 import { Outlet } from "react-router";
+import { ErrorBoundary } from "../assets/boundaries/ErrorBoundary.jsx";
 
 import NavBar from "./NavBar.jsx";
 import LanguageSelect from "./LanguageSelect.jsx";
@@ -19,7 +20,9 @@ const Layout = () => {
         <HeadInsert />
       </header>
       <main>
-        <Outlet />
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
       </main>
     </div>
   )

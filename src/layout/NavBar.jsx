@@ -22,7 +22,7 @@ const NavBar = () => {
       )
     } else {
       return (
-          <button type="submit"
+          <button type="submit" className="navbttn"
             onClick={() => execute()}>
             HOME
           </button>
@@ -36,16 +36,25 @@ const NavBar = () => {
     navigate("/home");
     window.location.reload();
   };
+
+  const toLogin = () => {
+    navigate("/login");
+    window.location.reload();
+  };
   
   const LogLink = () => {
     if(token !== null) {
       return (
         <form action={execute}>
-          <button type="submit" >Logout</button>
+          <button type="submit" className="navbttn">Logout</button>
         </form>
     )
     } else {
-      return ( <NavLink to="/login">Login</NavLink>)
+      return (
+        <form action={toLogin}>
+          <button type="submit" className="navbttn">Login</button>
+        </form>
+      )
     };
   };
 
