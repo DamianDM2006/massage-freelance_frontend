@@ -123,7 +123,7 @@ const HomePage = () => {
   return (
     <div className="home">
       <div className="welcome">
-        <h2>Welcome{client.id ? `.  Your are signed in under: ${client.user_name}.` : ` to our Home Page.`}</h2>
+        <h2>Welcome{client.id ? `.  You are signed in under: ${client.user_name}.` : ` to our Home Page.`}</h2>
         <p>
           This is the part where we tell you a little bit about ourselves. We hope you are impressed.
         </p>

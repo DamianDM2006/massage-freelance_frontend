@@ -13,7 +13,7 @@ header {
   display: grid;
   grid-template-areas:
     "language title insert"
-    "menu title insert";
+    "menu     title insert";
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -25,6 +25,10 @@ header {
 h2 {
   text-align: center;
 }
+
+/* main {
+  height: 80lvh;
+} */
 
 .alert {
   color:crimson;
@@ -128,9 +132,10 @@ h2 {
 }
 
 .insert {
+  display: grid;
   grid-area: insert;
   margin: 3px;
-  justify-items: right;
+  align-content: center;
 }
 
 .language {
@@ -221,7 +226,10 @@ h2 {
 }
 
 .title {
+  display: grid;
   grid-area: title;
+  height: 20lvh;
+  min-height: 180px;
 }
 
 .whchbttn {
@@ -232,4 +240,10 @@ h2 {
 .withh2 {
   display: grid;
   grid-template-columns: 2fr 5fr;
+}
+
+#iconf {
+  height: fit-content;
+  max-height: 170px;
+  justify-self: center;
 }

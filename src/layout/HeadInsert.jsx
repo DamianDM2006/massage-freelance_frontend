@@ -1,7 +1,9 @@
+import female_icon from "../assets/icons/female_icon.png";
+
 const HeadInsert = () => {
   return (
     <div className="insert">
-      <div>Header Insert</div>
+      <img src={female_icon} alt="black and white icon image of a female human" id="iconf" />
     </div>
   )
 };
