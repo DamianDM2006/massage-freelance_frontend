@@ -16,6 +16,8 @@ const PatientDetails = () => {
   const { patientName, setPatientName } = usePath();
   const { clientId, serviceId, patientId} = useParams();
 
+  if (!token) throw new Error(`Unathorized Attempt`);
+
   const syncPatient = async() => {
     try{
       const patientData = await getPatient(patientId, token);

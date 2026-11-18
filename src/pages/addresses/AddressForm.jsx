@@ -11,6 +11,8 @@ export const AddressForm = () => {
   const navigate = useNavigate();
   const { clientId, serviceId, patientId} = useParams();
 
+  if (!token) throw new Error(`Unathorized Attempt`);
+
   const tryUpdateAddress = async(formData) => {
     const allData = Object.fromEntries(formData.entries());
 
