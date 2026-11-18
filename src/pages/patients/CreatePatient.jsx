@@ -13,6 +13,8 @@ const CreatePatient = () => {
   const navigate = useNavigate();
   const { clientId, serviceId } = useParams();
 
+  if (!token) throw new Error(`Unathorized Attempt`);
+
   const preProcessB4send = (event) => {
     event.preventDefault();
    
