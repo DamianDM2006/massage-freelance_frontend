@@ -13,8 +13,8 @@ import HeadInsert from"./HeadInsert.jsx";
 const Layout = () => {
   return (
     <div className="page">
-      <header className="title">
-        <h1>Full Moon Massage</h1>
+      <header >
+        <h1 className="title">Full Moon Massage</h1>
         <NavBar />
         <LanguageSelect />
         <HeadInsert />
