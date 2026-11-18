@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, NavLink } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getPatientAddress } from "../../api/patients.js";
 
@@ -28,13 +28,18 @@ const PatientAddress = (input) => {
   const Address = () => {
     return (
       <>
-        <p>{address.street_number_1}</p>
-        <p>{address.street_number_2}</p>
-        <p>{address.sub_district}</p>
-        <p>{address.district}</p>
-        <p>{address.city}</p>
-        <p>{address.provence_state}</p>
-        <p>{address.postal_code}</p>
+        <section id="addpt">
+          <h4>{address.street_number_1}</h4>
+          {address.street_number_2 && <h4>{address.street_number_2}</h4>}
+          {address.sub_district && <h4>{address.sub_district}</h4>}
+          {address.district && <h4>{address.district}</h4>}
+          {address.city && <h4>{address.city}</h4>}
+          {address.provence_state && <h4>{address.provence_state}</h4>}
+          {address.postal_code && <h4>{address.postal_code}</h4>}
+        <NavLink id="addedt" to={`/home/${clientId}/service/${serviceId}/patient/${input.pt}/createAddress`}>
+          Edit address.
+        </NavLink>
+        </section>
       </>
     )
   };

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate, useParams, NavLink } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { getPatient } from "../../api/patients.js";
 import { usePath } from "../../assets/PathContext.jsx";
@@ -69,11 +69,13 @@ const PatientDetails = () => {
         {!error && <PatientListItems />}
       </ul>
       {patient.patient_id && <PatientAddress pt={patient.patient_id} />}
-      <button className="credsSmBtn"
-        onClick={() => {navigate(`/home/${clientId}/service/${serviceId}/profile`)}}>
-        Return to Profile
-      </button>
-      <SetApptPatient id={patient.patient_id}/>
+      <section id="addbttns">
+        <button className="credsSmBtn"
+          onClick={() => {navigate(`/home/${clientId}/service/${serviceId}/profile`)}}>
+          Return to Profile
+        </button>
+        <SetApptPatient id={patient.patient_id}/>
+      </section>
       {patient.patient_id && <DisplayPatientAppt id={patient.patient_id}/>}
     </>
   )
