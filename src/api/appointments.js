@@ -9,7 +9,7 @@ export const getAvailability = async(request, token) => {
     },
     body: JSON.stringify(request)
   });
-  const contentType = response.headers.get('content-type');
+  const contentType = response.headers.get('Content-Type');
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();
@@ -31,7 +31,7 @@ export const scheduleAppt = async(patId, reqBody, token) => {
     },
     body: JSON.stringify(reqBody)
   });
-  const contentType = response.headers.get('content-type');
+  const contentType = response.headers.get('Content-Type');
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();
@@ -52,7 +52,7 @@ export const getPatientAppts = async(patId, token) => {
       Authorization: "Bearer " + token
     }
   });
-  const contentType = response.headers.get('content-type')
+  const contentType = response.headers.get('Content-Type')
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await  response.json();
@@ -73,7 +73,7 @@ export const getApptDetails = async(apptId, patId, token) => {
       Authorization: "Bearer " + token
     }
   });
-  const contentType = response.headers.get('content-type');
+  const contentType = response.headers.get('Content-Type');
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await  response.json();
@@ -95,7 +95,7 @@ export const deleteAppt = async(patId, apptId, token) => {
       Authorization: "Bearer " + token
     }
   });
-  const contentType = response.headers.get('content-type');
+  const contentType = response.headers.get('Content-Type');
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();

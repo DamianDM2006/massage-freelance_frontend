@@ -48,7 +48,7 @@ const PatientAddress = (input) => {
     return (
       <>
         <h3>There is no address on file.</h3>
-        <p>{`Currious about the error ${error}`}</p>
+        {error && <p>{`Oops! ${error.message}`}</p>}
         <button
           className="credsSmBtn"
           onClick={() => navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}/createAddress`)}>
