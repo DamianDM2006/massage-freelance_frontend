@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { updatePatientAddress, getPatientAddress } from "../../api/patients.js";
+import ClientAddresses from "./ClientAddresses.jsx";
 
 export const AddressForm = () => {
   const { token } = useAuth();
@@ -42,6 +43,7 @@ export const AddressForm = () => {
     <>
       <h3>Fill in the below relevant fields of your address.</h3>
       <p><strong>Leave irrelevant fields empty.</strong></p>
+      <ClientAddresses />
       <form
         action={tryUpdateAddress}
         className="patForm">
