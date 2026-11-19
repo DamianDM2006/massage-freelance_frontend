@@ -239,9 +239,19 @@ h2 {
   grid-template-columns: 2fr 5fr;
 }
 
+#addbttns {
+  display: grid;
+  justify-content: center;
+  margin-top: 1.5em;
+}
+
+#addedt {
+  justify-self: center
+}  
+
 #addpt {
   display: grid;
-}
+}  
 
 #addpt h4 {
   margin-block-start: 3px;
@@ -249,15 +259,16 @@ h2 {
   margin-inline-start: 8px;
 }
 
-#addedt {
-  justify-self: center
+#addressch {
+  display: grid;
+  max-width: 70%;
+  min-width: fit-content;
+  margin: 1em;
+  padding: 5px;
+  border: 1px solid;
 }
 
-#addbttns {
-  display: grid;
-  justify-content: center;
-  margin-top: 1.5em;
-}
+/* #addressch */
 
 #alert {
   color:crimson;

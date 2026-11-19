@@ -10,8 +10,12 @@ export const AddressForm = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { clientId, serviceId, patientId} = useParams();
+  const [clientAddresses, setClientAddresses] = useState([]);
+  const [selectedAddressId, setSelectedAddressId] = useState();
 
   if (!token) throw new Error(`Unathorized Attempt`);
+
+  useEffect(() => {propagateForm()}, [selectedAddressId]);
   
   const syncCurrentAddress = async() => {
     try {
@@ -39,11 +43,30 @@ export const AddressForm = () => {
 
   useEffect(() => {tryUpdateAddress()}, []);
 
+  const getClientAddresses = (clAddData) => {
+    if (clAddData.length >= 1) setClientAddresses(clAddData);
+  };
+
+  const getSelectedAddress = (selectedAddId) => {
+    setSelectedAddressId(Number(selectedAddId));
+  };
+
+    const propagateForm = () => {
+    if (selectedAddressId) {
+      const newAddress = clientAddresses.find(a => a.id === selectedAddressId);
+      setAddress(newAddress);
+    };
+  };
+
+  console.log(address);
+
   return (
     <>
       <h3>Fill in the below relevant fields of your address.</h3>
       <p><strong>Leave irrelevant fields empty.</strong></p>
-      <ClientAddresses />
+      <ClientAddresses
+        clAddData={getClientAddresses}
+        selectedAddId={getSelectedAddress}/>
       <form
         action={tryUpdateAddress}
         className="patForm">
