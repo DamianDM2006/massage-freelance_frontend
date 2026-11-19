@@ -58,8 +58,6 @@ export const AddressForm = () => {
     };
   };
 
-  console.log(address);
-
   return (
     <>
       <h3>Fill in the below relevant fields of your address.</h3>
