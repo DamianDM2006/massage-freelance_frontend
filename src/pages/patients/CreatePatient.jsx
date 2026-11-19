@@ -56,7 +56,7 @@ const CreatePatient = () => {
       const newPatient = await createPatient(data, token);
       alert(`${newPatient.nickname} has been added to your account.`)
       setIsExisting(true);
-      navigate(`/home/${clientId}/service/${serviceId}/profile`);
+      navigate(`/home/${clientId}/service/${serviceId}/patient/${newPatient.id}`);
     } catch(err) {
       console.log(err);
       setError(err);

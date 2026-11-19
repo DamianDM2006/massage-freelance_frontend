@@ -8,7 +8,7 @@ export const getPatients = async(token) => {
       Authorization: "Bearer " + token
     }
   });
-  const contentType = response.headers.get('content-type');
+  const contentType = response.headers.get('Content-Type');
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();
@@ -29,7 +29,7 @@ export const getPatient = async(id, token) => {
       Authorization: "Bearer " + token
     }
   });
-  const contentType = response.headers.get('content-type');
+  const contentType = response.headers.get('Content-Type');
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();
@@ -51,7 +51,7 @@ export const createPatient = async(formData, token) => {
     },
     body: JSON.stringify(formData)
   });
-  const contentType = response.headers.get('content-type');
+  const contentType = response.headers.get('Content-Type');
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();
@@ -72,7 +72,7 @@ export const getPatientAddress = async(id, token) => {
       Authorization: "Bearer " + token
     }
   });
-  const contentType = response.headers.get('content-type');
+  const contentType = response.headers.get('Content-Type');
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();
@@ -94,7 +94,7 @@ export const updatePatientAddress = async(id, formData, token) => {
     },
     body: JSON.stringify(formData)
   });
-    const contentType = response.headers.get('content-type');
+    const contentType = response.headers.get('Content-Type');
 
   if (contentType && contentType.includes('application/json')) {
     const jsonResult = await response.json();

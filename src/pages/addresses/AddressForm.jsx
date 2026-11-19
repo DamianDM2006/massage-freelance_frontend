@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import { useAuth } from "../../authentications/AuthContext.jsx";
 import { updatePatientAddress, getPatientAddress } from "../../api/patients.js";
+import ClientAddresses from "./ClientAddresses.jsx";
 
 export const AddressForm = () => {
   const { token } = useAuth();
@@ -9,8 +10,12 @@ export const AddressForm = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const { clientId, serviceId, patientId} = useParams();
+  const [clientAddresses, setClientAddresses] = useState([]);
+  const [selectedAddressId, setSelectedAddressId] = useState();
 
   if (!token) throw new Error(`Unathorized Attempt`);
+
+  useEffect(() => {propagateForm()}, [selectedAddressId]);
   
   const syncCurrentAddress = async() => {
     try {
@@ -38,10 +43,28 @@ export const AddressForm = () => {
 
   useEffect(() => {tryUpdateAddress()}, []);
 
+  const getClientAddresses = (clAddData) => {
+    if (clAddData.length >= 1) setClientAddresses(clAddData);
+  };
+
+  const getSelectedAddress = (selectedAddId) => {
+    setSelectedAddressId(Number(selectedAddId));
+  };
+
+    const propagateForm = () => {
+    if (selectedAddressId) {
+      const newAddress = clientAddresses.find(a => a.id === selectedAddressId);
+      setAddress(newAddress);
+    };
+  };
+
   return (
     <>
       <h3>Fill in the below relevant fields of your address.</h3>
       <p><strong>Leave irrelevant fields empty.</strong></p>
+      <ClientAddresses
+        clAddData={getClientAddresses}
+        selectedAddId={getSelectedAddress}/>
       <form
         action={tryUpdateAddress}
         className="patForm">
