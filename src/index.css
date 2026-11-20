@@ -11,10 +11,12 @@ body {
 header {
   background-color: rgb(244, 244, 205); /*beige-ish*/
   display: grid;
+  /* max-height: 7em; */
   grid-template-areas:
     "language title insert"
     "menu     title insert";
-  grid-template-rows: 90px 1fr;
+  grid-template-rows: 60px 90px;
+  grid-template-columns: 120px 1fr 120px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -25,6 +27,15 @@ header {
 
 h2 {
   text-align: center;
+}
+
+input {
+  height: 2em;
+}
+
+select {
+  height: 2.5em;
+  margin: 8px
 }
 
 .alert {
@@ -73,7 +84,7 @@ h2 {
   max-width: 30em;
   min-width: 20em;
   min-height: 5em;
-  
+  border-radius: 20px;
 }
 
 .credsSmBtn {
@@ -81,10 +92,13 @@ h2 {
   max-width: 30em;
   min-width: 20em;
   min-height: 3em;
+  border-radius: 10px;
 }
 
 .credsThin {
   min-width: 20em;
+  height: 2.5em;
+  border-radius: 10px;
 }
 
 .credsForm {
@@ -103,6 +117,11 @@ h2 {
 
 .err {
   justify-items: center;
+}
+
+.flag {
+  max-height: 60px;
+  height: 90%;
 }
 
 .gender {
@@ -128,7 +147,9 @@ h2 {
 
 .language {
   grid-area: language;
-  margin-left: 13px
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* margin-left: 13px */
 }
 
 .login nav {
@@ -150,10 +171,14 @@ h2 {
   display: grid;
   grid-template-rows: auto;
   grid-area: menu;
+  height: fit-content;
+  min-width: 100px;
 }
 
 .menu a {
-  margin-left: 13px
+  margin: 3px 8px;
+  width: 90px;
+  text-align: center;
 }
 
 .mngappts {
@@ -169,6 +194,9 @@ h2 {
 .navbttn {
   width: 5em;
   height: 2em;
+  width: 90px;
+  margin: 3px 8px;
+  border-radius: 30% 5%;
 }
 
 .page {
@@ -225,8 +253,7 @@ h2 {
   display: grid;
   grid-area: title;
   align-items: center;
-  height: 20lvh;
-  min-height: 180px;
+  text-align: center;
 }
 
 .whchbttn {
@@ -280,8 +307,9 @@ h2 {
   min-height: 3em;
 }
 
-#iconf {
-  height: fit-content;
-  max-height: 170px;
+#icon {
+  height: 80%;
+  max-height: 150px;
   justify-self: center;
+  align-self: center;
 }

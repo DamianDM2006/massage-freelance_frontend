@@ -15,8 +15,6 @@ export const AddressForm = () => {
 
   if (!token) throw new Error(`Unathorized Attempt`);
 
-  useEffect(() => {propagateForm()}, [selectedAddressId]);
-  
   const syncCurrentAddress = async() => {
     try {
       const addData = await getPatientAddress(patientId, token);
@@ -26,7 +24,7 @@ export const AddressForm = () => {
       setError(err);
     }
   };
-
+  
   useEffect(() => {syncCurrentAddress()}, []);
   
   const tryUpdateAddress = async(formData) => {
@@ -35,28 +33,30 @@ export const AddressForm = () => {
       const addData = await updatePatientAddress(patientId, allData, token);
       setAddress(addData);
       setError(null);
-    navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`);
+      navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`);
     } catch(err) {
       setError(err);
     }
   };
-
+  
   useEffect(() => {tryUpdateAddress()}, []);
-
+  
   const getClientAddresses = (clAddData) => {
     if (clAddData.length >= 1) setClientAddresses(clAddData);
   };
-
+  
   const getSelectedAddress = (selectedAddId) => {
     setSelectedAddressId(Number(selectedAddId));
   };
-
-    const propagateForm = () => {
+  
+  const propagateForm = () => {
     if (selectedAddressId) {
       const newAddress = clientAddresses.find(a => a.id === selectedAddressId);
       setAddress(newAddress);
     };
   };
+  
+  useEffect(() => {propagateForm()}, [selectedAddressId]);
 
   return (
     <>
