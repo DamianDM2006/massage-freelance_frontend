@@ -63,8 +63,8 @@ const ProfilePage = () => {
     };
 
     return (
-      <div className="withh2">
-        <h3>Add a new member to your account.</h3>
+      <div className="withh4">
+        <h4>Add a new member to your account.</h4>
         <button
           className="credsSmBtn"
           onClick={() => {

@@ -4,9 +4,14 @@ body {
   justify-items: center;
 }
 
-/* button {
-  margin: 7px;
-} */
+button {
+  border-style: solid;
+  border-color: rgb(87, 87, 33);
+  border-bottom-color:rgb(152, 152, 86);
+  border-right-color: rgb(152, 152, 86);
+  background-color: rgb(255, 255, 252);
+  box-shadow: 6px 3px 3px rgb(216, 216, 206);
+}
 
 header {
   background-color: rgb(244, 244, 205); /*beige-ish*/
@@ -75,7 +80,11 @@ select {
 }
 
 .client {
-  border: solid;
+  background-color: rgb(255, 255, 252);
+  border: solid rgb(159, 159, 90);
+  border-bottom-width: 8px;
+  border-right-width: 8px;
+  border-radius: 8px;
   padding: 1em;
 }
 
@@ -110,7 +119,10 @@ select {
 }
 
 .disptappt {
+  background-color: rgb(255, 255, 252);
   border: solid;
+  border-color: rgb(159, 159, 90);
+  border-radius: 8px;
   padding: 1em;
   margin: 7px;
 }
@@ -231,7 +243,8 @@ select {
 }
 
 .ptli {
-  border: solid;
+  border: solid rgb(159, 159, 90);
+  border-radius: 8px;
   padding: 2em;
   margin: 5px;
 }
@@ -263,7 +276,27 @@ select {
 
 .withh2 {
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 8em 1fr;
+  align-items: baseline;
+}
+
+.withh2 h2 {
+  text-align: start;
+}
+
+.withh4 {
+  display: grid;
+  justify-content: center;
+}
+
+.withh4 h4 {
+  text-align: center;
+  alignment-baseline: baseline;
+  margin: 1em 0 3px 0 ;
+}
+
+.withh4 button {
+  margin-top: 8px;
 }
 
 #addbttns {
@@ -312,4 +345,9 @@ select {
   max-height: 150px;
   justify-self: center;
   align-self: center;
+}
+
+#navappt {
+  display: grid;
+  justify-items: center;
 }

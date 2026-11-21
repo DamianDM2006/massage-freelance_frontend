@@ -45,7 +45,7 @@ const SetApptPatient = (id) => {
   };
 
   return (
-    <nav>
+    <nav id="navappt">
       <RequestAppt />
     </nav>
   )
