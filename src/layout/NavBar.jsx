@@ -16,9 +16,10 @@ const NavBar = () => {
   const HomeLink = () => {
     if (token) {
       return (
-        <NavLink to={`/home/${clientId}`}>
+        <button type="submit" className="navbttn"
+          onClick={() => navigate(`/home/${clientId}`)}>
           Home
-        </NavLink>
+        </button>
       )
     } else {
       return (
@@ -45,15 +46,17 @@ const NavBar = () => {
   const LogLink = () => {
     if(token !== null) {
       return (
-        <form action={execute}>
-          <button type="submit" className="navbttn">Logout</button>
-        </form>
+          <button type="submit" className="navbttn"
+            onClick={() => execute()}>
+            Logout
+          </button>
     )
     } else {
       return (
-        <form action={toLogin}>
-          <button type="submit" className="navbttn">Login</button>
-        </form>
+          <button type="submit" className="navbttn"
+            onClick={() => toLogin()}>
+            Login
+          </button>
       )
     };
   };
@@ -62,7 +65,7 @@ const NavBar = () => {
     if (token) {
         return (
         <NavLink to={`/home/${clientId}/service/${serviceId}/profile`}>
-          Profile
+          <span>Profile</span>
         </NavLink>
       )
     } 

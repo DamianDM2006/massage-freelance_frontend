@@ -120,7 +120,7 @@ export const SetAppointment = (reqBody) => {
         <h3>Your requested appointment time is AVAILABLE. </h3>
         <p>{`On ${reqBody.requested.date} From: ${reqBody.requested.startTime} To: ${reqBody.requested.endTime}`}</p>
       </div>
-      <form action={trySchedule}>
+      <form action={trySchedule} id="wsuccess">
         <button className="credsSmBtn">
           Set Appointment
         </button>

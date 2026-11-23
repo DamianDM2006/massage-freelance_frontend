@@ -15,8 +15,6 @@ export const AddressForm = () => {
 
   if (!token) throw new Error(`Unathorized Attempt`);
 
-  useEffect(() => {propagateForm()}, [selectedAddressId]);
-  
   const syncCurrentAddress = async() => {
     try {
       const addData = await getPatientAddress(patientId, token);
@@ -26,7 +24,7 @@ export const AddressForm = () => {
       setError(err);
     }
   };
-
+  
   useEffect(() => {syncCurrentAddress()}, []);
   
   const tryUpdateAddress = async(formData) => {
@@ -35,31 +33,33 @@ export const AddressForm = () => {
       const addData = await updatePatientAddress(patientId, allData, token);
       setAddress(addData);
       setError(null);
-    navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`);
+      navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}`);
     } catch(err) {
       setError(err);
     }
   };
-
+  
   useEffect(() => {tryUpdateAddress()}, []);
-
+  
   const getClientAddresses = (clAddData) => {
     if (clAddData.length >= 1) setClientAddresses(clAddData);
   };
-
+  
   const getSelectedAddress = (selectedAddId) => {
     setSelectedAddressId(Number(selectedAddId));
   };
-
-    const propagateForm = () => {
+  
+  const propagateForm = () => {
     if (selectedAddressId) {
       const newAddress = clientAddresses.find(a => a.id === selectedAddressId);
       setAddress(newAddress);
     };
   };
+  
+  useEffect(() => {propagateForm()}, [selectedAddressId]);
 
   return (
-    <>
+    <div id="addressform">
       <h3>Fill in the below relevant fields of your address.</h3>
       <p><strong>Leave irrelevant fields empty.</strong></p>
       <ClientAddresses
@@ -126,7 +126,7 @@ export const AddressForm = () => {
         onClick={() => navigate(-1)}
       >"Back"</button>
       {error && <h3>{error.message}</h3>}
-    </>
+    </div>
   )
 };
 

@@ -151,6 +151,9 @@ const ManageAppointments = () => {
       )
     }
   };
+
+  
+
   return (
     <div className="mngappts">
       <WhichButton />

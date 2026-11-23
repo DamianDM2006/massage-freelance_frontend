@@ -46,23 +46,23 @@ const PatientAddress = (input) => {
 
   if ( !address || address.id === 1) {
     return (
-      <>
-        <h3>There is no address on file.</h3>
+      <div className="ptaddress">
+        <h3>There is not an address on file.</h3>
         {error && <p>{`Oops! ${error.message}`}</p>}
         <button
           className="credsSmBtn"
           onClick={() => navigate(`/home/${clientId}/service/${serviceId}/patient/${patientId}/createAddress`)}>
             Add Address Now
         </button>
-      </>
+      </div>
     )
   };
 
   return (
-    <>
+    <div className="ptaddress">
       <h3>Patient's Address:</h3>
       <Address />
-    </>
+    </div>
   )
 };
 

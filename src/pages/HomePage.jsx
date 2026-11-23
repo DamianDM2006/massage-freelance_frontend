@@ -54,7 +54,8 @@ const HomePage = () => {
             <h4>{svc.title}</h4>
           </NavLink>
         </nav>
-          <button onClick={() => goToWhere(svc)}>
+          <button className="credsThin"
+            onClick={() => goToWhere(svc)}>
             <strong>Schedule Appointment</strong>
             <small>for this service</small>
           </button>

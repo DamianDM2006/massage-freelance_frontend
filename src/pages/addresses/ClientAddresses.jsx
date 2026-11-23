@@ -39,7 +39,7 @@ const ClientAddresses = ({ clAddData, selectedAddId }) =>{
                 <option
                   key={clAddress.id}
                   value={clAddress.id}>
-                  <h5>{clAddress.street_number_1}</h5>
+                  <h5>{clAddress.street_number_1}, {clAddress.apt_unit}</h5>
                 </option>
               )})
           }

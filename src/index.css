@@ -1,20 +1,35 @@
+a:hover {
+  color:rgb(188, 136, 2);
+}
+
 body {
   background-color:rgb(233, 233, 206);
   margin: 0 8px 8px 8px;;
   justify-items: center;
 }
 
-/* button {
-  margin: 7px;
-} */
+button {
+  border-style: solid;
+  border-color: rgb(87, 87, 33);
+  border-bottom-color:rgb(152, 152, 86);
+  border-right-color: rgb(152, 152, 86);
+  background-color: rgb(255, 255, 252);
+  box-shadow: 6px 3px 3px rgb(216, 216, 206);
+}
+
+button:hover {
+  background-color:oldlace;
+}
 
 header {
   background-color: rgb(244, 244, 205); /*beige-ish*/
   display: grid;
+  /* max-height: 7em; */
   grid-template-areas:
     "language title insert"
     "menu     title insert";
-  grid-template-rows: 90px 1fr;
+  grid-template-rows: 60px 90px;
+  grid-template-columns: 120px 1fr 120px;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -25,6 +40,15 @@ header {
 
 h2 {
   text-align: center;
+}
+
+input {
+  height: 2em;
+}
+
+select {
+  height: 2.5em;
+  margin: 8px
 }
 
 .alert {
@@ -39,6 +63,22 @@ h2 {
   max-width: 30em;
   min-width: 20em;
   min-height: 3em;
+}
+
+.apptdtls {
+  border: solid;
+  border-color: rgb(159, 159, 90);
+  border-radius: 8px;
+  padding: 1em;
+  margin: 7px;
+}
+
+.apptdtls p {
+  text-align: center;
+}
+
+.apptdtls h4 {
+  text-align: center;
 }
 
 .apptForm {
@@ -57,14 +97,12 @@ h2 {
   max-width: 11em;
 }
 
-.apptdtls {
-  border: solid;
-  padding: 1em;
-  margin: 7px;
-}
-
 .client {
-  border: solid;
+  background-color: rgb(255, 255, 252);
+  border: solid rgb(159, 159, 90);
+  border-bottom-width: 8px;
+  border-right-width: 8px;
+  border-radius: 8px;
   padding: 1em;
 }
 
@@ -73,7 +111,7 @@ h2 {
   max-width: 30em;
   min-width: 20em;
   min-height: 5em;
-  
+  border-radius: 20px;
 }
 
 .credsSmBtn {
@@ -81,10 +119,13 @@ h2 {
   max-width: 30em;
   min-width: 20em;
   min-height: 3em;
+  border-radius: 10px;
 }
 
 .credsThin {
   min-width: 20em;
+  height: 2.5em;
+  border-radius: 10px;
 }
 
 .credsForm {
@@ -96,13 +137,21 @@ h2 {
 }
 
 .disptappt {
+  background-color: rgb(255, 255, 252);
   border: solid;
+  border-color: rgb(159, 159, 90);
+  border-radius: 8px;
   padding: 1em;
   margin: 7px;
 }
 
 .err {
   justify-items: center;
+}
+
+.flag {
+  max-height: 60px;
+  height: 90%;
 }
 
 .gender {
@@ -128,7 +177,9 @@ h2 {
 
 .language {
   grid-area: language;
-  margin-left: 13px
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* margin-left: 13px */
 }
 
 .login nav {
@@ -150,14 +201,19 @@ h2 {
   display: grid;
   grid-template-rows: auto;
   grid-area: menu;
+  height: fit-content;
+  min-width: 100px;
 }
 
 .menu a {
-  margin-left: 13px
+  margin: 3px 8px;
+  width: 90px;
+  text-align: center;
 }
 
 .mngappts {
-  border: solid;
+  border: solid rgb(159, 159, 90);
+  border-radius: 8px;
   padding: 1em;
   margin: 7px;
 }
@@ -169,6 +225,9 @@ h2 {
 .navbttn {
   width: 5em;
   height: 2em;
+  width: 90px;
+  margin: 3px 8px;
+  border-radius: 30% 5%;
 }
 
 .page {
@@ -202,14 +261,20 @@ h2 {
   max-width: 75lvw;
 }
 
+.ptaddress h3 {
+  text-align: center;
+}
+
 .ptli {
-  border: solid;
+  border: solid rgb(159, 159, 90);
+  border-radius: 8px;
   padding: 2em;
   margin: 5px;
 }
 
 .renav {
-  border: solid;
+  border: solid rgb(159, 159, 90);
+  border-radius: 8px;
   margin: 3px;
 }
 
@@ -217,26 +282,51 @@ h2 {
   padding: 13px;
 }
 
+.serveDetails button {
+  justify-self: center;
+}
+
 .success {
   color:green;
+  justify-items: center;
 }
 
 .title {
   display: grid;
   grid-area: title;
   align-items: center;
-  height: 20lvh;
-  min-height: 180px;
+  text-align: center;
 }
 
 .whchbttn {
-  border: solid;
+  border: solid rgb(159, 159, 90);
+  border-radius: 8px;
   margin: 3px;
 }
 
 .withh2 {
   display: grid;
-  grid-template-columns: 2fr 5fr;
+  grid-template-columns: 8em 1fr;
+  align-items: baseline;
+}
+
+.withh2 h2 {
+  text-align: start;
+}
+
+.withh4 {
+  display: grid;
+  justify-content: center;
+}
+
+.withh4 h4 {
+  text-align: center;
+  alignment-baseline: baseline;
+  margin: 1em 0 3px 0 ;
+}
+
+.withh4 button {
+  margin-top: 8px;
 }
 
 #addbttns {
@@ -251,6 +341,7 @@ h2 {
 
 #addpt {
   display: grid;
+  margin: 0 16px 
 }  
 
 #addpt h4 {
@@ -259,16 +350,29 @@ h2 {
   margin-inline-start: 8px;
 }
 
+#addressform h3 {
+  text-align: center;
+}
+
+#addressform p {
+  text-align: center;
+}
+
+#addressform form button {
+  justify-self: center;
+  width: 70%;
+}
+
 #addressch {
   display: grid;
-  max-width: 70%;
-  min-width: fit-content;
+  width: 26em;
+  max-width: 80%;
+  /* min-width: fit-content; */
   margin: 1em;
   padding: 5px;
   border: 1px solid;
+  justify-self: center;
 }
-
-/* #addressch */
 
 #alert {
   color:crimson;
@@ -280,8 +384,30 @@ h2 {
   min-height: 3em;
 }
 
-#iconf {
-  height: fit-content;
-  max-height: 170px;
+#createpatient h3 {
+  text-align: center;
+}
+
+#createpatient p {
+  text-align: center;
+}
+
+#createpatient form button {
+  justify-self: center;
+}
+
+#icon {
+  height: 80%;
+  max-height: 150px;
+  justify-self: center;
+  align-self: center;
+}
+
+#navappt {
+  display: grid;
+  justify-items: center;
+}
+
+#wsuccess {
   justify-self: center;
 }
