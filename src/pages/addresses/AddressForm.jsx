@@ -59,7 +59,7 @@ export const AddressForm = () => {
   useEffect(() => {propagateForm()}, [selectedAddressId]);
 
   return (
-    <>
+    <div id="addressform">
       <h3>Fill in the below relevant fields of your address.</h3>
       <p><strong>Leave irrelevant fields empty.</strong></p>
       <ClientAddresses
@@ -126,7 +126,7 @@ export const AddressForm = () => {
         onClick={() => navigate(-1)}
       >"Back"</button>
       {error && <h3>{error.message}</h3>}
-    </>
+    </div>
   )
 };
 

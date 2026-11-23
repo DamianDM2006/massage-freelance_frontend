@@ -7,7 +7,7 @@ const ClientDetails = (clientData) => {
     return (
       <>
         <p>
-          Signed in under user name:
+          Signed in under the user name:
           <strong>
             {`  ${client.user_name}`}
           </strong>
@@ -19,7 +19,6 @@ const ClientDetails = (clientData) => {
 
   return (
     <div className="client">
-      <h3>Client Details</h3>
       <ClientInfo />
     </div>
   )

@@ -57,6 +57,22 @@ select {
   min-height: 3em;
 }
 
+.apptdtls {
+  border: solid;
+  border-color: rgb(159, 159, 90);
+  border-radius: 8px;
+  padding: 1em;
+  margin: 7px;
+}
+
+.apptdtls p {
+  text-align: center;
+}
+
+.apptdtls h4 {
+  text-align: center;
+}
+
 .apptForm {
   display: grid;
 }
@@ -71,12 +87,6 @@ select {
 .apptForm input {
   margin-left: 5px;
   max-width: 11em;
-}
-
-.apptdtls {
-  border: solid;
-  padding: 1em;
-  margin: 7px;
 }
 
 .client {
@@ -194,7 +204,8 @@ select {
 }
 
 .mngappts {
-  border: solid;
+  border: solid rgb(159, 159, 90);
+  border-radius: 8px;
   padding: 1em;
   margin: 7px;
 }
@@ -242,6 +253,10 @@ select {
   max-width: 75lvw;
 }
 
+.ptaddress h3 {
+  text-align: center;
+}
+
 .ptli {
   border: solid rgb(159, 159, 90);
   border-radius: 8px;
@@ -250,7 +265,8 @@ select {
 }
 
 .renav {
-  border: solid;
+  border: solid rgb(159, 159, 90);
+  border-radius: 8px;
   margin: 3px;
 }
 
@@ -258,8 +274,13 @@ select {
   padding: 13px;
 }
 
+.serveDetails button {
+  justify-self: center;
+}
+
 .success {
   color:green;
+  justify-items: center;
 }
 
 .title {
@@ -270,7 +291,8 @@ select {
 }
 
 .whchbttn {
-  border: solid;
+  border: solid rgb(159, 159, 90);
+  border-radius: 8px;
   margin: 3px;
 }
 
@@ -311,6 +333,7 @@ select {
 
 #addpt {
   display: grid;
+  margin: 0 16px 
 }  
 
 #addpt h4 {
@@ -319,16 +342,29 @@ select {
   margin-inline-start: 8px;
 }
 
+#addressform h3 {
+  text-align: center;
+}
+
+#addressform p {
+  text-align: center;
+}
+
+#addressform form button {
+  justify-self: center;
+  width: 70%;
+}
+
 #addressch {
   display: grid;
-  max-width: 70%;
-  min-width: fit-content;
+  width: 26em;
+  max-width: 80%;
+  /* min-width: fit-content; */
   margin: 1em;
   padding: 5px;
   border: 1px solid;
+  justify-self: center;
 }
-
-/* #addressch */
 
 #alert {
   color:crimson;
@@ -338,6 +374,18 @@ select {
   max-width: 30em;
   min-width: 20em;
   min-height: 3em;
+}
+
+#createpatient h3 {
+  text-align: center;
+}
+
+#createpatient p {
+  text-align: center;
+}
+
+#createpatient form button {
+  justify-self: center;
 }
 
 #icon {
@@ -350,4 +398,8 @@ select {
 #navappt {
   display: grid;
   justify-items: center;
+}
+
+#wsuccess {
+  justify-self: center;
 }

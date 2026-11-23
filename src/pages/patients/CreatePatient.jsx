@@ -77,15 +77,15 @@ const CreatePatient = () => {
   };
 
   return (
-    <>
-      <h3>CreatePatient Form:</h3>
+    <div id="createpatient">
+      <h3>Patient Intake:</h3>
       <p>Insure to fill in ALL the required fields.  </p>
       <form onSubmit={preProcessB4send} className="patForm">
         <PatientFormInputs />
         <button className="credsBtn">Submit </button>
       </form>
       {error && <ToProfile />}
-    </>
+    </div>
   )
 };
 

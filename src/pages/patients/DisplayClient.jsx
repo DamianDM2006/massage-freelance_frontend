@@ -35,8 +35,8 @@ const DisplayClient = (pId) => {
           </h2>
         </span>
         <li>
-          <p>Goes by
-            <strong><u>{` ${patient.nickname}`}</u></strong>
+          <p>Goes by {" "}
+            <strong><u>{`${patient.nickname}`}</u></strong>
           </p>
         </li>
         <li>

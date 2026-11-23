@@ -48,8 +48,8 @@ const ProfilePage = () => {
   const ProfileOptions = () => {
     if (!isExisting) {
       return (
-        <>
-          <p>In order to continue, please complete the intake form.</p>
+        <div className="withh4">
+          <p>In order to schedule your first massage, please complete the intake form.</p>
           <button
             className="credsSmBtn"
             onClick={() => {
@@ -58,7 +58,7 @@ const ProfilePage = () => {
           >
             Continue to <strong>Intake</strong> Form
           </button>
-        </>
+        </div>
       );
     };
 
